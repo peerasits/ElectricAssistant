@@ -5,7 +5,7 @@ public class ApplianceData {
     private String type;
     private boolean status, iscurrent, isvoltage;
     private boolean isIgnore, isTimmer, isNotify;
-    private String description:
+    private String description;
     private double defalutVoltage, countdownTime;
 
     public ApplianceData(String name, String type, boolean status, boolean iscurrent, boolean isvoltage, boolean isIgnore, boolean isTimmer, boolean isNotify, String description, double defalutVoltage, double countdownTime) {
