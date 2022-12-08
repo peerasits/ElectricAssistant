@@ -3,10 +3,10 @@ package com.example.electricassistant.Data;
 public class ApplianceData {
     private String name;
     private String type;
-    private boolean status,iscurrent,isvoltage;
-    private boolean isIgnore,isTimmer,isNotify;
+    private boolean status, iscurrent, isvoltage;
+    private boolean isIgnore, isTimmer, isNotify;
     private String description:
-    private double defalutVoltage,countdownTime;
+    private double defalutVoltage, countdownTime;
 
     public ApplianceData(String name, String type, boolean status, boolean iscurrent, boolean isvoltage, boolean isIgnore, boolean isTimmer, boolean isNotify, String description, double defalutVoltage, double countdownTime) {
         this.name = name;
