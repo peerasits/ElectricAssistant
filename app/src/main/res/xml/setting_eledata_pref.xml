@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:key="overview_data_pref"
+        app:title="Overview data"
+        app:summary="See all rate price of electricity data"
+        app:iconSpaceReserved="false"/>
+    <SwitchPreferenceCompat
+        app:key="enable_sync_pref"
+        app:title="Enable sync data of rate price electricity"
+        app:defaultValue="true"
+        app:iconSpaceReserved="false"
+        />
+    <ListPreference
+        app:key="data_refresh_rate_pref"
+        app:title="Data refresh rate"
+        app:summary="1 week"
+        app:iconSpaceReserved="false"
+        app:entries="@array/refresh_rate"
+        app:entryValues="@array/refresh_rate"
+        />
+    <Preference
+        app:key="manual_data_insert_pref"
+        app:title="Manual data insert"
+        app:summary="If you select this function.The sync option is going to disable"
+        app:iconSpaceReserved="false"
+        />
+
+
+</PreferenceScreen>

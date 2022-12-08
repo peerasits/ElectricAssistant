@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="Display"
+        app:iconSpaceReserved="false"
+        >
+
+        <ListPreference
+            app:key="font_size_pref"
+            app:title="font size"
+            app:iconSpaceReserved="false"
+            app:entries="@array/font_size"
+            app:entryValues="@array/font_size_value"
+            app:summary="Normal"
+            app:defaultValue="Normal"
+            />
+        <ListPreference
+            app:key="currency_pref"
+            app:title="Currency"
+            app:entries="@array/currency"
+            app:entryValues="@array/currency_value"
+            app:summary="Thai baht"
+            app:defaultValue="Thai baht"
+            app:iconSpaceReserved="false"/>
+        <ListPreference
+            app:key="unit_elec_pref"
+            app:title="Unit of electricity"
+            app:entries="@array/unit_elec"
+            app:entryValues="@array/unit_elec_value"
+            app:summary="Kilowatt"
+            app:defaultValue="Kilowatt"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Notification"
+        app:iconSpaceReserved="false"
+        >
+
+        <SwitchPreferenceCompat
+            app:key="notification_enable_pref"
+            app:title="Enable notification"
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            />
+        <SwitchPreferenceCompat
+            app:key="ignore_unnecessary_notification_pref"
+            app:title="Ignore unnecessary notification"
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"/>
+        <SwitchPreferenceCompat
+            app:key="enable_sound_notification_pref"
+            android:title="Enable Sound notification"
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+
+
+
+
+
+
+</PreferenceScreen>
