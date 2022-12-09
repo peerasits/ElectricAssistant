@@ -1,4 +1,4 @@
-package com.example.electricassistant.settingactivity;
+package com.example.electricassistant.setting_activity;
 
 import android.os.Bundle;
 

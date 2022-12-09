@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.electricassistant.Data.GlobalData;
 import com.example.electricassistant.profile.ProfileActivity;
-import com.example.electricassistant.settingactivity.DataSettingActivity;
-import com.example.electricassistant.settingactivity.SettingActivity;
+import com.example.electricassistant.setting_activity.DataSettingActivity;
+import com.example.electricassistant.setting_activity.SettingActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        GlobalData.initData();
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -69,4 +71,5 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

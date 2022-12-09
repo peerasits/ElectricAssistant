@@ -4,16 +4,14 @@ public class HomeData {
     private String name;
     private String address;
     private String typeOfUse;
-    private boolean isActive;
     private boolean isMonitoring;
     private RoomData[] rooms;
 
 
-    public HomeData(String name, String address, String typeOfUse, boolean isActive, boolean isMonitoring, RoomData[] rooms) {
+    public HomeData(String name, String address, String typeOfUse, boolean isMonitoring, RoomData[] rooms) {
         this.name = name;
         this.address = address;
         this.typeOfUse = typeOfUse;
-        this.isActive = isActive;
         this.isMonitoring = isMonitoring;
         this.rooms = rooms;
     }
@@ -42,14 +40,6 @@ public class HomeData {
         this.typeOfUse = typeOfUse;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public boolean isMonitoring() {
         return isMonitoring;
     }
@@ -65,6 +55,4 @@ public class HomeData {
     public void setRooms(RoomData[] rooms) {
         this.rooms = rooms;
     }
-
-
 }

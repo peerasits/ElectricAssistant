@@ -1,20 +1,20 @@
-package com.example.electricassistant.RecyclerAdapter;
+package com.example.electricassistant.recycler_adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclervi
         private TextView home_title_rv_tv;
         private TextView home_desc_rv_tv;
         private ImageView option_rv_img;
+        private ConstraintLayout layout_homelist_rv_constraint;
 
 
         public ViewHolder(View view) {
@@ -41,6 +42,7 @@ public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclervi
             home_title_rv_tv = view.findViewById(R.id.home_title_rv_tv);
             home_desc_rv_tv = view.findViewById(R.id.home_desc_rv_tv);
             option_rv_img = view.findViewById(R.id.option_rv_img);
+            layout_homelist_rv_constraint = view.findViewById(R.id.layout_homelist_rv_constraint);
 
         }
 
@@ -56,13 +58,15 @@ public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclervi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        if(position%2 == 0)
+            holder.layout_homelist_rv_constraint.setBackgroundColor(Color.rgb(232,231,231));
         holder.home_title_rv_tv.setText(homeDataList.get(position).getName());
         holder.home_desc_rv_tv.setText(homeDataList.get(position).getAddress());
         holder.option_rv_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                new bottomSheetCreateForHome().create(fragmentActivity,homeDataList.get(position).getName());
+                new bottomSheetCreateForHome().create(fragmentActivity,homeDataList.get(position).getName(),homeDataList.get(position).getAddress());
             }
         });
     }

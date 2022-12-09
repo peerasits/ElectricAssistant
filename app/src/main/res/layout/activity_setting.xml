@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settingactivity.SettingActivity">
+    tools:context=".setting_activity.SettingActivity">
 
     <FrameLayout
         android:id="@+id/idFrameLayout"

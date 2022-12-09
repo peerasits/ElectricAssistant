@@ -12,7 +12,7 @@
             app:title="font size"
             app:iconSpaceReserved="false"
             app:entries="@array/font_size"
-            app:entryValues="@array/font_size_value"
+            app:entryValues="@array/font_size"
             app:summary="Normal"
             app:defaultValue="Normal"
             />
@@ -20,7 +20,7 @@
             app:key="currency_pref"
             app:title="Currency"
             app:entries="@array/currency"
-            app:entryValues="@array/currency_value"
+            app:entryValues="@array/currency"
             app:summary="Thai baht"
             app:defaultValue="Thai baht"
             app:iconSpaceReserved="false"/>
@@ -28,9 +28,9 @@
             app:key="unit_elec_pref"
             app:title="Unit of electricity"
             app:entries="@array/unit_elec"
-            app:entryValues="@array/unit_elec_value"
-            app:summary="Kilowatt"
-            app:defaultValue="Kilowatt"
+            app:entryValues="@array/unit_elec"
+            app:summary="kilowatt (kW)"
+            app:defaultValue="kilowatt (kW)"
             app:iconSpaceReserved="false"/>
 
     </PreferenceCategory>

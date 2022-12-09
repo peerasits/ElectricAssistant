@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        app:key="gauge_select_display_pref"
+        app:title="Gauge display"
+        app:summary="Power usage"
+        app:defaultValue="Power usage"
+        app:entries="@array/gauge_display"
+        app:entryValues="@array/gauge_display"
+        app:iconSpaceReserved="false"/>
+
+    <SwitchPreferenceCompat
+        app:key="gauge_notification_pref"
+        app:title="Enable gauge notification"
+        app:summary="Notify when the value is over the limit"
+        app:defaultValue="false"
+        app:iconSpaceReserved="false"/>
+
+    <ListPreference
+        app:key="gauge_refresh_rate_pref"
+        app:title="Gauge refresh rate"
+        app:summary="5 sec"
+        app:defaultValue="5 sec"
+        app:entries="@array/gauge_refresh_rate"
+        app:entryValues="@array/gauge_refresh_rate"
+        app:iconSpaceReserved="false"/>
+
+    <ListPreference
+        app:key="gauge_elec_usage_pref"
+        app:title="Electricity usage display unit"
+        app:summary="Kilowatt hour (kWh)"
+        app:defaultValue="Kilowatt hour (kWh)"
+        app:enabled="true"
+        app:entries="@array/gauge_usage_display_elec"
+        app:entryValues="@array/gauge_usage_display_elec"
+        app:iconSpaceReserved="false"/>
+
+    <ListPreference
+        app:key="gauge_elec_current_pref"
+        app:title="Electricity current display unit"
+        app:summary="Ampere"
+        app:defaultValue="Ampere"
+        app:enabled="true"
+        app:entries="@array/gauge_current_display_elec"
+        app:entryValues="@array/gauge_current_display_elec"
+        app:iconSpaceReserved="false"/>
+
+
+
+
+
+</PreferenceScreen>

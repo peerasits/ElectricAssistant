@@ -15,8 +15,9 @@
         />
     <ListPreference
         app:key="data_refresh_rate_pref"
-        app:title="Data refresh rate"
+        app:title="Sync Data refresh rate"
         app:summary="1 week"
+        app:defaultValue="1 week"
         app:iconSpaceReserved="false"
         app:entries="@array/refresh_rate"
         app:entryValues="@array/refresh_rate"

@@ -1,4 +1,4 @@
-package com.example.electricassistant.RecyclerAdapter;
+package com.example.electricassistant.recycler_adapter;
 
 import android.content.DialogInterface;
 import android.view.View;
@@ -7,7 +7,10 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
+
+import com.example.electricassistant.Data.GlobalData;
 import com.example.electricassistant.R;
+import com.example.electricassistant.ui.HomeSelectFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -21,8 +24,13 @@ public class bottomSheetCreateForHome {
     private TextView menu_bottom_sheet_home_edit;
     private TextView menu_bottom_sheet_home_delete;
     private TextView menu_bottom_sheet_home_cancel;
+    private HomeRecyclerviewAdapter homeAdapter = HomeSelectFragment.homeAdapter;
+    private String selectedName,selectedAddress;
 
-    public void create(FragmentActivity fragmentActivity,String name){
+    public void create(FragmentActivity fragmentActivity,String name,String address){
+
+        selectedName = name;
+        selectedAddress = address;
 
         bottomSheetView = fragmentActivity.getLayoutInflater().inflate(R.layout.home_bottom_sheet, null);
         bottomSheetDialog = new BottomSheetDialog(fragmentActivity);
@@ -40,6 +48,11 @@ public class bottomSheetCreateForHome {
             @Override
             public void onClick(View view) {
                 Toast.makeText(fragmentActivity, "You selected " + name, Toast.LENGTH_SHORT).show();
+
+                int selectedIndex  = searchGlobalData();
+
+                if(selectedIndex != -1)
+                    GlobalData.homeSelected = GlobalData.homeDataList.get(selectedIndex);
                 bottomSheetDialog.dismiss();
             }
         });
@@ -53,7 +66,20 @@ public class bottomSheetCreateForHome {
         menu_bottom_sheet_home_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(fragmentActivity, "Option2", Toast.LENGTH_SHORT).show();
+
+
+                int deleteIndex = searchGlobalData();
+                if(deleteIndex!=-1){
+                    GlobalData.homeDataList.remove(deleteIndex);
+                    GlobalData.homeSelected = null;
+                    Toast.makeText(fragmentActivity, "Successfully delete", Toast.LENGTH_SHORT).show();
+                    homeAdapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(fragmentActivity, "Error delete", Toast.LENGTH_SHORT).show();
+                }
+
+                bottomSheetDialog.dismiss();
+
             }
         });
         menu_bottom_sheet_home_cancel.setOnClickListener(new View.OnClickListener() {
@@ -80,5 +106,17 @@ public class bottomSheetCreateForHome {
 
 
         bottomSheetDialog.show();
+    }
+
+    private int searchGlobalData(){
+        int selectedIndex = -1;
+        for(int i = 0; i< GlobalData.homeDataList.size(); i++){
+            if(GlobalData.homeDataList.get(i).getName().equals(selectedName) && GlobalData.homeDataList.get(i).getAddress().equals(selectedAddress)){
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        return selectedIndex;
     }
 }
