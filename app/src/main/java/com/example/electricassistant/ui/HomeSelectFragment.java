@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.electricassistant.Data.GlobalData;
+import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.recycler_adapter.HomeRecyclerviewAdapter;

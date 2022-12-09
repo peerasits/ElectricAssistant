@@ -1,4 +1,4 @@
-package com.example.electricassistant.Data;
+package com.example.electricassistant.display_data;
 
 import java.time.LocalDateTime;
 

@@ -12,10 +12,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 
-import com.example.electricassistant.Data.GlobalData;
+import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
-import com.example.electricassistant.ui.HomeSelectFragment;
 
 public class AddHomeActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -1,7 +1,5 @@
 package com.example.electricassistant.ui;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ekndev.gaugelibrary.Range;
-import com.example.electricassistant.Data.CostOfElectricityDisplayData;
-import com.example.electricassistant.Data.GeneralDisplayData;
-import com.example.electricassistant.Data.GlobalData;
-import com.example.electricassistant.MainActivity;
+import com.example.electricassistant.Data.GuageTypeEnum;
+import com.example.electricassistant.display_data.CostOfElectricityDisplayData;
+import com.example.electricassistant.display_data.GeneralDisplayData;
+import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.setting_gauge_activity.GaugeSettingActivity;
@@ -88,8 +86,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private FloatingActionButton floatBtn;
     private Button refresh_btn;
     private boolean remove = false;
-    private GeneralDisplayData generalDisplayData;
-    private CostOfElectricityDisplayData costOfElectricityDisplayData;
+
     private TextView home_title_tv;
 
     //set gauge type to setting informaton layout
@@ -117,20 +114,23 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            generalDisplayData.generateValue();
-            guage.setValue(generalDisplayData.getValue());
+            GeneralDisplayData generalDisplayDataObject = GlobalData.currentUserData.getDisplayData();
+            generalDisplayDataObject.generateValue();
+            guage.setValue(generalDisplayDataObject.getValue());
             if (gaugeType == 1) {
-                usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayData.getValue()));
-                max_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayData.getMax()));
-                min_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayData.getMin()));
-                average_usagelayout_value_tv.setText(String.valueOf(generalDisplayData.getAverage()));
+                //GeneralDisplayData generalDisplayDataObject = GlobalData.currentUserData.getDisplayData();
+                usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getValue()));
+                max_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getMax()));
+                min_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getMin()));
+                average_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getAverage()));
             } else if (gaugeType == 2) {
                 String thbStr = " THB";
-                reachusage_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayData.getReachedOfCost()))+thbStr);
-                totalcost_costusagelayout_value_tv.setText(String.valueOf(costOfElectricityDisplayData.getValue())+thbStr);
-                max_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayData.getMax()))+thbStr);
-                min_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayData.getMin()))+thbStr);
-                average_costusagelayout_value_tv.setText(String.valueOf(costOfElectricityDisplayData.getAverage())+thbStr);
+                CostOfElectricityDisplayData costOfElectricityDisplayDataObject = (CostOfElectricityDisplayData) GlobalData.currentUserData.getDisplayData();
+                reachusage_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getReachedOfCost())) + thbStr);
+                totalcost_costusagelayout_value_tv.setText(String.valueOf(costOfElectricityDisplayDataObject.getValue()) + thbStr);
+                max_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getMax())) + thbStr);
+                min_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getMin())) + thbStr);
+                average_costusagelayout_value_tv.setText(String.valueOf(costOfElectricityDisplayDataObject.getAverage()) + thbStr);
             }
             if (remove)
                 handler.removeCallbacks(this::run);
@@ -143,11 +143,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         range1 = new Range();
         range1.setColor(Color.rgb(255, 255, 0));
         range1.setFrom(rangeMin);
-        range1.setTo(rangeMax / 2);
+        range1.setTo(rangeMax / 4);
 
         range2 = new Range();
         range2.setColor(Color.rgb(0, 255, 0));
-        range2.setFrom(rangeMax / 2 + 1);
+        range2.setFrom(rangeMax / 4 + 1);
         range2.setTo((int) (rangeMax * 0.9));
 
         range3 = new Range();
@@ -162,20 +162,50 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        //Example eleciticy data for testing
-        costOfElectricityDisplayData = new CostOfElectricityDisplayData(0, 25, 100, null, null,
-                50, 0, 200, "Type 01 : Not above 150 unit", 250, false);
-        generalDisplayData = (GeneralDisplayData) costOfElectricityDisplayData;
-
-        //Testing generate time
+        //Generate test time
         LocalDateTime maxWhen = LocalDateTime.of(2022, 6, 15, 15, 56);
         LocalDateTime minWhen = LocalDateTime.of(2022, 4, 30, 15, 56);
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
+        CostOfElectricityDisplayData costOfElectricityDisplayData = new CostOfElectricityDisplayData(0, 25, 100, minWhen, maxWhen,
+                50, 0, 200, "Type 01 : Not above 150 unit", 250, false);
+
+        GeneralDisplayData generalDisplayData = (GeneralDisplayData) costOfElectricityDisplayData;
+        //Generate time with formetter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+
+
+        switch (gaugeType) {
+            case 1:
+                GlobalData.currentUserData.setGuageType(GuageTypeEnum.ElectricityUsageGauge);
+                GlobalData.currentUserData.setDisplayData(generalDisplayData);
+                break;
+            case 2:
+                GlobalData.currentUserData.setGuageType(GuageTypeEnum.CostofElectricityUsageGauge);
+                GlobalData.currentUserData.setDisplayData(costOfElectricityDisplayData);
+                break;
+            default:
+                break;
+        }
+        View inflated2 = null;
+        int rangeMin = (int) GlobalData.currentUserData.getDisplayData().getRangeMin();
+        int rangeMax = (int) GlobalData.currentUserData.getDisplayData().getRangeMax();
 
         //inflate usage_layout to dashboard fragment
         stub = v.findViewById(R.id.layout_stub);
         if (gaugeType == 1) {
+            stub2 = v.findViewById(R.id.layout_stub2);
+            stub2.setLayoutResource(R.layout.arcgauge_display_layout);
+            inflated2 = stub2.inflate();
+
+            guage = inflated2.findViewById(R.id.arcguage_01);
+            guage.setValue(0);
+            guage.setMinValue(rangeMin);
+            guage.setMaxValue(rangeMax);
+            setRange(rangeMin, rangeMax);
+            guage.addRange(range1);
+            guage.addRange(range2);
+            guage.addRange(range3);
+
             stub.setLayoutResource(R.layout.usage_layout);
             View inflated = stub.inflate();
             usage_usagelayout_value_tv = inflated.findViewById(R.id.usage_usagelayout_value_tv);
@@ -183,46 +213,42 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             max_usage_usagelayout_value_tv = inflated.findViewById(R.id.max_usage_usagelayout_value_tv);
             max_usage_usagelayout_value_tv.setText("0");
             max_usage_usagelayout_when_value_tv = inflated.findViewById(R.id.max_usage_usagelayout_when_value_tv);
-            max_usage_usagelayout_when_value_tv.setText(maxWhen.format(format));
+            max_usage_usagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMax().format(formatter));
             min_usage_usagelayout_value_tv = inflated.findViewById(R.id.min_usage_usagelayout_value_tv);
             min_usage_usagelayout_value_tv.setText("0");
             min_usage_usagelayout_when_value_tv = inflated.findViewById(R.id.min_usage_usagelayout_when_value_tv);
-            min_usage_usagelayout_when_value_tv.setText(minWhen.format(format));
+            min_usage_usagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMin().format(formatter));
             average_usagelayout_value_tv = inflated.findViewById(R.id.average_usagelayout_value_tv);
         } else if (gaugeType == 2) {
+            stub2 = v.findViewById(R.id.layout_stub2);
+            stub2.setLayoutResource(R.layout.arcgauge_display_layout);
+            inflated2 = stub2.inflate();
+
+            guage = inflated2.findViewById(R.id.arcguage_01);
+            guage.setValue(0);
+            guage.setMinValue(rangeMin);
+            guage.setMaxValue(rangeMax);
+            setRange(rangeMin, rangeMax);
+            guage.addRange(range1);
+            guage.addRange(range2);
+            guage.addRange(range3);
+
             stub.setLayoutResource(R.layout.cost_usage_layout);
             View inflated = stub.inflate();
+            CostOfElectricityDisplayData cObject = (CostOfElectricityDisplayData) GlobalData.currentUserData.getDisplayData();
+
             typeusage_costusagelayout_value_tv = inflated.findViewById(R.id.typeusage_costusagelayout_value_tv);
-            typeusage_costusagelayout_value_tv.setText(costOfElectricityDisplayData.getTypeOfUse());
+            typeusage_costusagelayout_value_tv.setText(cObject.getTypeOfUse());
             reachusage_costusagelayout_value_tv = inflated.findViewById(R.id.reachusage_costusagelayout_value_tv);
             totalcost_costusagelayout_value_tv = inflated.findViewById(R.id.totalcost_costusagelayout_value_tv);
             max_cost_costusagelayout_value_tv = inflated.findViewById(R.id.max_cost_costusagelayout_value_tv);
             max_cost_costusagelayout_when_value_tv = inflated.findViewById(R.id.max_cost_costusagelayout_when_value_tv);
-            max_cost_costusagelayout_when_value_tv.setText(maxWhen.format(format));
+            max_cost_costusagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMax().format(formatter));
             min_cost_costusagelayout_value_tv = inflated.findViewById(R.id.min_cost_costusagelayout_value_tv);
             min_cost_costusagelayout_when_value_tv = inflated.findViewById(R.id.min_cost_costusagelayout_when_value_tv);
-            min_cost_costusagelayout_when_value_tv.setText(minWhen.format(format));
+            min_cost_costusagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMin().format(formatter));
             average_costusagelayout_value_tv = inflated.findViewById(R.id.average_costusagelayout_value_tv);
         }
-
-
-        stub2 = v.findViewById(R.id.layout_stub2);
-        stub2.setLayoutResource(R.layout.arcgauge_display_layout);
-        View inflated2 = stub2.inflate();
-
-
-        int rangeMin = (int) generalDisplayData.getRangeMin();
-        int rangeMax = (int) generalDisplayData.getRangeMax();
-        setRange(rangeMin, rangeMax);
-
-        guage = inflated2.findViewById(R.id.arcguage_01);
-        guage.setValue(0);
-        guage.setMinValue(rangeMin);
-        guage.setMaxValue(rangeMax);
-        guage.addRange(range1);
-        guage.addRange(range2);
-        guage.addRange(range3);
-
 
         floatBtn = inflated2.findViewById(R.id.setting_guage_btn);
         floatBtn.setOnClickListener(this::onClick);
@@ -239,8 +265,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onResume() {
         super.onResume();
-        if (GlobalData.homeSelected != null) {
-            home_title_tv.setText(GlobalData.homeSelected.getName());
+        if (GlobalData.currentUserData.getHomeSelected() != null) {
+            home_title_tv.setText(GlobalData.currentUserData.getHomeSelected().getName());
             remove = false;
             handler.postDelayed(runnable, 1000);
         } else {

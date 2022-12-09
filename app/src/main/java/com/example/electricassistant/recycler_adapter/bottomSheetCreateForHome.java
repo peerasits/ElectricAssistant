@@ -8,11 +8,14 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 
-import com.example.electricassistant.Data.GlobalData;
+import com.example.electricassistant.Data.HomeData;
+import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.ui.HomeSelectFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.List;
 
 public class bottomSheetCreateForHome {
 
@@ -52,7 +55,7 @@ public class bottomSheetCreateForHome {
                 int selectedIndex  = searchGlobalData();
 
                 if(selectedIndex != -1)
-                    GlobalData.homeSelected = GlobalData.homeDataList.get(selectedIndex);
+                    GlobalData.currentUserData.setHomeSelected(GlobalData.currentUserData.getArrHomeData().get(selectedIndex));
                 bottomSheetDialog.dismiss();
             }
         });
@@ -70,8 +73,10 @@ public class bottomSheetCreateForHome {
 
                 int deleteIndex = searchGlobalData();
                 if(deleteIndex!=-1){
-                    GlobalData.homeDataList.remove(deleteIndex);
-                    GlobalData.homeSelected = null;
+                    List<HomeData> getList = GlobalData.currentUserData.getArrHomeData();
+                    getList.remove(deleteIndex);
+                    GlobalData.currentUserData.setArrHomeData(getList);
+                    GlobalData.currentUserData.setHomeSelected(null);
                     Toast.makeText(fragmentActivity, "Successfully delete", Toast.LENGTH_SHORT).show();
                     homeAdapter.notifyDataSetChanged();
                 }else{
