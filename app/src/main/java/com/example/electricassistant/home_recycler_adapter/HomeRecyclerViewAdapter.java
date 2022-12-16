@@ -1,4 +1,4 @@
-package com.example.electricassistant.recycler_adapter;
+package com.example.electricassistant.home_recycler_adapter;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -18,12 +18,12 @@ import com.example.electricassistant.R;
 
 import java.util.List;
 
-public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclerviewAdapter.ViewHolder> {
+public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapter.ViewHolder> {
 
     List<HomeData> homeDataList;
     FragmentActivity fragmentActivity;
 
-    public HomeRecyclerviewAdapter(FragmentActivity fragmentActivity,List<HomeData> homeDataList) {
+    public HomeRecyclerViewAdapter(FragmentActivity fragmentActivity, List<HomeData> homeDataList) {
         this.fragmentActivity = fragmentActivity;
         this.homeDataList = homeDataList;
     }
@@ -41,7 +41,7 @@ public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclervi
 
             home_title_rv_tv = view.findViewById(R.id.home_title_rv_tv);
             home_desc_rv_tv = view.findViewById(R.id.home_desc_rv_tv);
-            option_rv_img = view.findViewById(R.id.option_rv_img);
+            option_rv_img = view.findViewById(R.id.option_home_rv_img);
             layout_homelist_rv_constraint = view.findViewById(R.id.layout_homelist_rv_constraint);
 
         }
@@ -66,7 +66,7 @@ public class HomeRecyclerviewAdapter extends RecyclerView.Adapter<HomeRecyclervi
             @Override
             public void onClick(View view) {
 
-                new bottomSheetCreateForHome().create(fragmentActivity,homeDataList.get(position).getName(),homeDataList.get(position).getAddress());
+                new BottomSheetCreateForHome().create(fragmentActivity,homeDataList.get(position).getName(),homeDataList.get(position).getAddress());
             }
         });
     }

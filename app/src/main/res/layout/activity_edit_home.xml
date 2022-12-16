@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.AddHomeActivity">
+    tools:context=".home.EditHomeActivity">
 
     <ImageView
         android:id="@+id/edit_home_pic_img"
@@ -145,4 +145,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cancel_edit_home_btn"
         app:layout_constraintTop_toTopOf="@+id/cancel_edit_home_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
-import com.example.electricassistant.recycler_adapter.HomeRecyclerviewAdapter;
+import com.example.electricassistant.home_recycler_adapter.HomeRecyclerViewAdapter;
 import com.example.electricassistant.home.AddHomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -69,8 +69,8 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
     }
 
     private RecyclerView homelist_recyclerview;
-    public static  HomeRecyclerviewAdapter homeAdapter;
-    private List<HomeData> homeDataList = GlobalData.homeDataList;
+    public static HomeRecyclerViewAdapter homeAdapter;
+    private List<HomeData> homeDataList = GlobalData.currentUserData.getArrHomeData();
     private FloatingActionButton addHomeBtn;
     private Intent intent;
 
@@ -82,7 +82,7 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home_select, container, false);
         homelist_recyclerview = v.findViewById(R.id.homelist_recyclerview);
-        setRecyclerView();
+        setHomeRecyclerView();
 
         addHomeBtn = v.findViewById(R.id.add_home_btn);
         addHomeBtn.setOnClickListener(this::onClick);
@@ -95,12 +95,12 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onResume() {
-        setRecyclerView();
+        setHomeRecyclerView();
         super.onResume();
     }
 
-    public void setRecyclerView(){
-        homeAdapter = new HomeRecyclerviewAdapter(getActivity(),homeDataList);
+    private void setHomeRecyclerView(){
+        homeAdapter = new HomeRecyclerViewAdapter(getActivity(),homeDataList);
         homeAdapter.notifyDataSetChanged();
         homelist_recyclerview.setAdapter(homeAdapter);
         homelist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -1,6 +1,7 @@
 package com.example.electricassistant.display_data;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class VoltageDisplayData extends GeneralDisplayData {
     private double typeOfVoltage;
@@ -26,5 +27,13 @@ public class VoltageDisplayData extends GeneralDisplayData {
 
     public void setFrequency(double frequency) {
         this.frequency = frequency;
+    }
+
+    @Override
+    public void generateValue(){
+        Random random = new Random();
+        int initialVoltage = 215;
+        int result = new Random().nextInt(15)+1;
+        setValue(initialVoltage+result);
     }
 }

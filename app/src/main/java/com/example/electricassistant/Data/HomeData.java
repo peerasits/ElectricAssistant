@@ -1,14 +1,15 @@
 package com.example.electricassistant.Data;
 
+import java.util.List;
+
 public class HomeData {
     private String name;
     private String address;
     private String typeOfUse;
     private boolean isMonitoring;
-    private RoomData[] rooms;
+    private List<RoomData> rooms;
 
-
-    public HomeData(String name, String address, String typeOfUse, boolean isMonitoring, RoomData[] rooms) {
+    public HomeData(String name, String address, String typeOfUse, boolean isMonitoring, List<RoomData> rooms) {
         this.name = name;
         this.address = address;
         this.typeOfUse = typeOfUse;
@@ -48,11 +49,11 @@ public class HomeData {
         isMonitoring = monitoring;
     }
 
-    public RoomData[] getRooms() {
+    public List<RoomData> getRooms() {
         return rooms;
     }
 
-    public void setRooms(RoomData[] rooms) {
+    public void setRooms(List<RoomData> rooms) {
         this.rooms = rooms;
     }
 }

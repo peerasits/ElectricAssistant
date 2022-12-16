@@ -15,10 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ekndev.gaugelibrary.HalfGauge;
 import com.ekndev.gaugelibrary.Range;
 import com.example.electricassistant.Data.GuageTypeEnum;
 import com.example.electricassistant.display_data.CostOfElectricityDisplayData;
 import com.example.electricassistant.display_data.GeneralDisplayData;
+import com.example.electricassistant.display_data.VoltageDisplayData;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.dialog.DialogTemplate;
@@ -77,7 +79,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     }
 
     final private Handler handler = new Handler();
-    private com.ekndev.gaugelibrary.ArcGauge guage;
+    private com.ekndev.gaugelibrary.ArcGauge arcGauge;
+    private HalfGauge halfGauge;
     private com.ekndev.gaugelibrary.Range range1;
     private com.ekndev.gaugelibrary.Range range2;
     private com.ekndev.gaugelibrary.Range range3;
@@ -110,20 +113,26 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private TextView min_cost_costusagelayout_when_value_tv;
     private TextView average_costusagelayout_value_tv;
 
+    //for gauge title
+    private TextView total_title_tv;
+
+
 
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
             GeneralDisplayData generalDisplayDataObject = GlobalData.currentUserData.getDisplayData();
             generalDisplayDataObject.generateValue();
-            guage.setValue(generalDisplayDataObject.getValue());
+
             if (gaugeType == 1) {
+                arcGauge.setValue(generalDisplayDataObject.getValue());
                 //GeneralDisplayData generalDisplayDataObject = GlobalData.currentUserData.getDisplayData();
                 usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getValue()));
                 max_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getMax()));
                 min_usage_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getMin()));
                 average_usagelayout_value_tv.setText(String.valueOf(generalDisplayDataObject.getAverage()));
             } else if (gaugeType == 2) {
+                arcGauge.setValue(generalDisplayDataObject.getValue());
                 String thbStr = " THB";
                 CostOfElectricityDisplayData costOfElectricityDisplayDataObject = (CostOfElectricityDisplayData) GlobalData.currentUserData.getDisplayData();
                 reachusage_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getReachedOfCost())) + thbStr);
@@ -131,6 +140,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 max_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getMax())) + thbStr);
                 min_cost_costusagelayout_value_tv.setText((String.valueOf(costOfElectricityDisplayDataObject.getMin())) + thbStr);
                 average_costusagelayout_value_tv.setText(String.valueOf(costOfElectricityDisplayDataObject.getAverage()) + thbStr);
+            }else if(gaugeType == 3){
+                halfGauge.setValue(generalDisplayDataObject.getValue());
             }
             if (remove)
                 handler.removeCallbacks(this::run);
@@ -141,17 +152,34 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
     private void setRange(int rangeMin, int rangeMax) {
         range1 = new Range();
-        range1.setColor(Color.rgb(255, 255, 0));
+        range1.setColor(Color.rgb(255, 255, 102));
         range1.setFrom(rangeMin);
         range1.setTo(rangeMax / 4);
 
         range2 = new Range();
-        range2.setColor(Color.rgb(0, 255, 0));
+        range2.setColor(Color.rgb(0, 204, 0));
         range2.setFrom(rangeMax / 4 + 1);
         range2.setTo((int) (rangeMax * 0.9));
 
         range3 = new Range();
-        range3.setColor(Color.rgb(255, 0, 0));
+        range3.setColor(Color.rgb(255, 51, 51));
+        range3.setFrom((int) (rangeMax * 0.9) + 1);
+        range3.setTo(rangeMax);
+    }
+
+    private void setRangeForHalfGauge(int rangeMin, int rangeMax){
+        range1 = new Range();
+        range1.setColor(Color.rgb(255, 255, 102));
+        range1.setFrom(rangeMin);
+        range1.setTo(rangeMax / 1.25);
+
+        range2 = new Range();
+        range2.setColor(Color.rgb(0, 204, 0));
+        range2.setFrom(rangeMax / 1.25 + 1);
+        range2.setTo((int) (rangeMax * 0.9));
+
+        range3 = new Range();
+        range3.setColor(Color.rgb(255, 51, 51));
         range3.setFrom((int) (rangeMax * 0.9) + 1);
         range3.setTo(rangeMax);
     }
@@ -173,6 +201,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         //Generate time with formetter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
+        VoltageDisplayData voltageDisplayData = new VoltageDisplayData(0,0,260,minWhen,maxWhen,110,0,260,220,50);
+
+
 
         switch (gaugeType) {
             case 1:
@@ -183,6 +214,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                 GlobalData.currentUserData.setGuageType(GuageTypeEnum.CostofElectricityUsageGauge);
                 GlobalData.currentUserData.setDisplayData(costOfElectricityDisplayData);
                 break;
+            case 3:
+                GlobalData.currentUserData.setGuageType(GuageTypeEnum.VoltageGauge);
+                GlobalData.currentUserData.setDisplayData(voltageDisplayData);
             default:
                 break;
         }
@@ -197,14 +231,14 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             stub2.setLayoutResource(R.layout.arcgauge_display_layout);
             inflated2 = stub2.inflate();
 
-            guage = inflated2.findViewById(R.id.arcguage_01);
-            guage.setValue(0);
-            guage.setMinValue(rangeMin);
-            guage.setMaxValue(rangeMax);
+            arcGauge = inflated2.findViewById(R.id.arcguage_01);
+            arcGauge.setValue(0);
+            arcGauge.setMinValue(rangeMin);
+            arcGauge.setMaxValue(rangeMax);
             setRange(rangeMin, rangeMax);
-            guage.addRange(range1);
-            guage.addRange(range2);
-            guage.addRange(range3);
+            arcGauge.addRange(range1);
+            arcGauge.addRange(range2);
+            arcGauge.addRange(range3);
 
             stub.setLayoutResource(R.layout.usage_layout);
             View inflated = stub.inflate();
@@ -219,19 +253,22 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             min_usage_usagelayout_when_value_tv = inflated.findViewById(R.id.min_usage_usagelayout_when_value_tv);
             min_usage_usagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMin().format(formatter));
             average_usagelayout_value_tv = inflated.findViewById(R.id.average_usagelayout_value_tv);
+
+            floatBtn = inflated2.findViewById(R.id.setting_guage_btn);
+            floatBtn.setOnClickListener(this::onClick);
         } else if (gaugeType == 2) {
             stub2 = v.findViewById(R.id.layout_stub2);
             stub2.setLayoutResource(R.layout.arcgauge_display_layout);
             inflated2 = stub2.inflate();
 
-            guage = inflated2.findViewById(R.id.arcguage_01);
-            guage.setValue(0);
-            guage.setMinValue(rangeMin);
-            guage.setMaxValue(rangeMax);
+            arcGauge = inflated2.findViewById(R.id.arcguage_01);
+            arcGauge.setValue(0);
+            arcGauge.setMinValue(rangeMin);
+            arcGauge.setMaxValue(rangeMax);
             setRange(rangeMin, rangeMax);
-            guage.addRange(range1);
-            guage.addRange(range2);
-            guage.addRange(range3);
+            arcGauge.addRange(range1);
+            arcGauge.addRange(range2);
+            arcGauge.addRange(range3);
 
             stub.setLayoutResource(R.layout.cost_usage_layout);
             View inflated = stub.inflate();
@@ -248,10 +285,42 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             min_cost_costusagelayout_when_value_tv = inflated.findViewById(R.id.min_cost_costusagelayout_when_value_tv);
             min_cost_costusagelayout_when_value_tv.setText(GlobalData.currentUserData.getDisplayData().getWhenMin().format(formatter));
             average_costusagelayout_value_tv = inflated.findViewById(R.id.average_costusagelayout_value_tv);
+
+            floatBtn = inflated2.findViewById(R.id.setting_guage_btn);
+            floatBtn.setOnClickListener(this::onClick);
+
+
+        }
+        else if(gaugeType == 3){
+            stub2 = v.findViewById(R.id.layout_stub2);
+            stub2.setLayoutResource(R.layout.halfgauge_display_layout);
+            inflated2 = stub2.inflate();
+
+            halfGauge = inflated2.findViewById(R.id.halfgauge_01);
+            halfGauge.setMaxValue(rangeMin);
+            halfGauge.setMaxValue(rangeMax);
+            setRangeForHalfGauge(rangeMin,rangeMax);
+            halfGauge.addRange(range1);
+            halfGauge.addRange(range2);
+            halfGauge.addRange(range3);
+
+            floatBtn = inflated2.findViewById(R.id.setting_half_guage_btn);
+            floatBtn.setOnClickListener(this::onClick);
+
         }
 
-        floatBtn = inflated2.findViewById(R.id.setting_guage_btn);
-        floatBtn.setOnClickListener(this::onClick);
+        total_title_tv = inflated2.findViewById(R.id.total_title_tv);
+
+
+
+        if(GlobalData.currentUserData.getGuageType() == GuageTypeEnum.ElectricityUsageGauge)
+            total_title_tv.setText("Total usage (KWh)");
+        else if(GlobalData.currentUserData.getGuageType() == GuageTypeEnum.CostofElectricityUsageGauge)
+            total_title_tv.setText("Total price of usage (baht)");
+        else if (GlobalData.currentUserData.getGuageType() == GuageTypeEnum.VoltageGauge)
+            total_title_tv.setText("Voltage (volt)");
+
+
 
         refresh_btn = v.findViewById(R.id.refresh_btn);
         refresh_btn.setOnClickListener(this::onClick);
@@ -272,7 +341,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         } else {
             remove = true;
             handler.removeCallbacks(runnable);
-            DialogTemplate.generateDialog(getActivity());
+            new DialogTemplate().generateDialog(getActivity());
         }
 
 
@@ -286,7 +355,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         }
         if (view.getId() == R.id.refresh_btn) {
             Toast.makeText(getActivity(), "Refreshing", Toast.LENGTH_SHORT).show();
-            guage.setValue(new Random().nextInt(1000) + 1);
+            arcGauge.setValue(new Random().nextInt(1000) + 1);
         }
     }
 

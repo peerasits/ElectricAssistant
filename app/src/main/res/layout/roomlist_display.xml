@@ -2,43 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_homelist_rv_constraint"
+    android:id="@+id/layout_roomlist_rv_constraint"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/room_title_rv_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Room1"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/room_img_rv"
+        app:layout_constraintTop_toTopOf="@+id/room_img_rv" />
+
     <ImageView
-        android:id="@+id/home_img_rv"
+        android:id="@+id/room_img_rv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
+        app:srcCompat="@drawable/ic_baseline_door_front_24" />
 
     <TextView
-        android:id="@+id/home_title_rv_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Home1"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/home_img_rv"
-        app:layout_constraintTop_toTopOf="@+id/home_img_rv" />
-
-    <TextView
-        android:id="@+id/home_desc_rv_tv"
+        android:id="@+id/room_desc_rv_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/home_title_rv_tv"
-        app:layout_constraintTop_toBottomOf="@+id/home_title_rv_tv" />
+        app:layout_constraintStart_toStartOf="@+id/room_title_rv_tv"
+        app:layout_constraintTop_toBottomOf="@+id/room_title_rv_tv" />
 
     <ImageView
-        android:id="@+id/option_home_rv_img"
+        android:id="@+id/option_room_rv_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

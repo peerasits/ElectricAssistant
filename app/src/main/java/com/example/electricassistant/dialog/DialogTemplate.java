@@ -11,7 +11,7 @@ import com.example.electricassistant.MainActivity;
 
 public class DialogTemplate {
 
-    public static void generateDialog(Activity activity){
+    public void generateDialog(Activity activity){
         new AlertDialog.Builder(activity)
                 .setTitle("Error")
                 .setMessage("No home selected.Please select home first.")
@@ -22,6 +22,20 @@ public class DialogTemplate {
                     }
                 }).show();
     }
+
+    public void generateSelectedDialog(Activity activity,String message){
+        new AlertDialog.Builder(activity)
+                .setTitle("Notification")
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
+    }
+
+
 
 
 }
