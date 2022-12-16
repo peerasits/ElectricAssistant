@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.electricassistant.Data.RoomData;
@@ -69,8 +70,9 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView roomlist_recyclerview;
     private RoomRecyclerViewAdapter roomRecyclerViewAdapter;
-    private List<RoomData> roomData = GlobalData.currentUserData.getHomeSelected().getRooms();
+    private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
+    private TextView no_data_room_tv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,12 +80,19 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_room, container, false);
         roomlist_recyclerview = v.findViewById(R.id.roomlist_recyclerview);
+        no_data_room_tv = v.findViewById(R.id.no_data_room_tv);
 
         add_room_btn = v.findViewById(R.id.add_room_btn);
         add_room_btn.setOnClickListener(this::onClick);
+        if(GlobalData.currentUserData.getHomeSelected()!=null) {
+            roomData = GlobalData.currentUserData.getHomeSelected().getRooms();
+        }
 
         if(roomData == null){
             roomData = new ArrayList<RoomData>();
+            no_data_room_tv.setVisibility(View.VISIBLE);
+        }else{
+            no_data_room_tv.setVisibility(View.GONE);
         }
 
         setRoomRecyclerView();
@@ -95,6 +104,8 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         roomRecyclerViewAdapter.notifyDataSetChanged();
         roomlist_recyclerview.setAdapter(roomRecyclerViewAdapter);
         roomlist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
     }
 
     @Override

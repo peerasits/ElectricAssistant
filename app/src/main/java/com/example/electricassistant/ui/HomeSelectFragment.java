@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
@@ -73,6 +74,7 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
     private List<HomeData> homeDataList = GlobalData.currentUserData.getArrHomeData();
     private FloatingActionButton addHomeBtn;
     private Intent intent;
+    private static TextView no_data_homeselect_tv;
 
 
 
@@ -82,6 +84,7 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home_select, container, false);
         homelist_recyclerview = v.findViewById(R.id.homelist_recyclerview);
+        no_data_homeselect_tv = v.findViewById(R.id.no_data_homeselect_tv);
         setHomeRecyclerView();
 
         addHomeBtn = v.findViewById(R.id.add_home_btn);
@@ -96,6 +99,7 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         setHomeRecyclerView();
+        setNoDataTextView();
         super.onResume();
     }
 
@@ -104,6 +108,13 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
         homeAdapter.notifyDataSetChanged();
         homelist_recyclerview.setAdapter(homeAdapter);
         homelist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+    public static void setNoDataTextView(){
+        if(GlobalData.currentUserData.getArrHomeData().size()<=0){
+            no_data_homeselect_tv.setVisibility(View.VISIBLE);
+        }else{
+            no_data_homeselect_tv.setVisibility(View.GONE);
+        }
     }
 
     @Override

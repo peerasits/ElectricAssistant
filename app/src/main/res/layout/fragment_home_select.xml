@@ -15,6 +15,17 @@
         tools:context=".ui.HomeSelectFragment">
 
 
+        <TextView
+            android:id="@+id/no_data_homeselect_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No data"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/add_home_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/homelist_recyclerview" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_home_btn"
             android:layout_width="wrap_content"

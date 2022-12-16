@@ -100,6 +100,9 @@ public class BottomSheetCreateForHome {
                 } else {
                     Toast.makeText(fragmentActivity, "Error delete", Toast.LENGTH_SHORT).show();
                 }
+                if(processUser.getArrHomeData().size()<=0){
+                    HomeSelectFragment.setNoDataTextView();
+                }
 
                 bottomSheetDialog.dismiss();
 
