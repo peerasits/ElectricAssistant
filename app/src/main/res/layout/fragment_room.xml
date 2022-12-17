@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@+id/add_room_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/home_room_pic_label_img" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -46,6 +46,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/roomlist_recyclerview" />
+
+        <ImageView
+            android:id="@+id/home_room_pic_label_img"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:alpha="0.5"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="-4dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/home_name_room_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="13dp"
+            android:text="Home01"
+            android:textColor="#202020"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/roomlist_recyclerview"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/roomlist_recyclerview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_settings_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

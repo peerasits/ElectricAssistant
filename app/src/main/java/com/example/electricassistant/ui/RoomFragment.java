@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,6 +74,7 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
     private TextView no_data_room_tv;
+    private ImageView home_room_pic_label_img;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,9 +84,11 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         roomlist_recyclerview = v.findViewById(R.id.roomlist_recyclerview);
         no_data_room_tv = v.findViewById(R.id.no_data_room_tv);
         no_data_room_tv.setVisibility(View.GONE);
-
         add_room_btn = v.findViewById(R.id.add_room_btn);
         add_room_btn.setOnClickListener(this::onClick);
+        home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
+        home_room_pic_label_img.setImageResource(R.mipmap.home_example);
+
         if(GlobalData.currentUserData.getHomeSelected()!=null) {
             roomData = GlobalData.currentUserData.getHomeSelected().getRooms();
         }
