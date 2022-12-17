@@ -7,6 +7,7 @@ import com.example.electricassistant.Data.GaugeRefreshRateEnum;
 import com.example.electricassistant.Data.GaugeUnitEnum;
 import com.example.electricassistant.Data.GuageTypeEnum;
 import com.example.electricassistant.Data.HomeData;
+import com.example.electricassistant.Data.MeasureEnum;
 import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.Data.SyncRefreshRateEnum;
 import com.example.electricassistant.Data.UnitEnum;
@@ -36,9 +37,9 @@ public class GlobalData {
 
 
     public static void initHomeData(){
-        homeDataList.add(new HomeData("Home01","Nakhonpathom","test",true,roomDataList));
-        homeDataList.add(new HomeData("Home02","Bangkok","test2",false,null));
-        homeDataList.add(new HomeData("Home03","Petchburi","test3",true,null));
+        homeDataList.add(new HomeData("Home01","Nakhonpathom", MeasureEnum.Above_150,true,roomDataList));
+        homeDataList.add(new HomeData("Home02","Bangkok",MeasureEnum.TOU,false,null));
+        homeDataList.add(new HomeData("Home03","Petchburi",MeasureEnum.Not_Above_150,true,null));
 
     }
 

@@ -20,6 +20,17 @@
         android:text="Select" />
 
     <TextView
+        android:id="@+id/menu_bottom_sheet_home_info"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_info_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Info" />
+
+    <TextView
         android:id="@+id/menu_bottom_sheet_home_edit"
         android:layout_width="match_parent"
         android:layout_height="60dp"

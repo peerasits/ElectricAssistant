@@ -2,7 +2,6 @@ package com.example.electricassistant.home_recycler_adapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +28,7 @@ public class BottomSheetCreateForHome {
     private BottomSheetBehavior bottomSheetBehavior;
 
     private TextView menu_bottom_sheet_home_select;
+    private TextView menu_bottom_sheet_home_info;
     private TextView menu_bottom_sheet_home_edit;
     private TextView menu_bottom_sheet_home_delete;
     private TextView menu_bottom_sheet_home_cancel;
@@ -47,6 +47,7 @@ public class BottomSheetCreateForHome {
         bottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheetView.getParent());
 
         menu_bottom_sheet_home_select = bottomSheetView.findViewById(R.id.menu_bottom_sheet_home_select);
+        menu_bottom_sheet_home_info = bottomSheetView.findViewById(R.id.menu_bottom_sheet_home_info);
         menu_bottom_sheet_home_edit = bottomSheetView.findViewById(R.id.menu_bottom_sheet_home_edit);
         menu_bottom_sheet_home_delete = bottomSheetView.findViewById(R.id.menu_bottom_sheet_home_delete);
         menu_bottom_sheet_home_cancel = bottomSheetDialog.findViewById(R.id.menu_bottom_sheet_home_cancel);
@@ -64,6 +65,14 @@ public class BottomSheetCreateForHome {
                 new DialogTemplate().generateSelectedDialog(fragmentActivity,resultSelect);
             }
         });
+        menu_bottom_sheet_home_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(fragmentActivity, "Clicked info", Toast.LENGTH_SHORT).show();
+                bottomSheetDialog.dismiss();
+            }
+        });
+
         menu_bottom_sheet_home_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

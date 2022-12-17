@@ -5,14 +5,14 @@ import java.util.List;
 public class HomeData {
     private String name;
     private String address;
-    private String typeOfUse;
+    private MeasureEnum measure;
     private boolean isMonitoring;
     private List<RoomData> rooms;
 
-    public HomeData(String name, String address, String typeOfUse, boolean isMonitoring, List<RoomData> rooms) {
+    public HomeData(String name, String address, MeasureEnum measure, boolean isMonitoring, List<RoomData> rooms) {
         this.name = name;
         this.address = address;
-        this.typeOfUse = typeOfUse;
+        this.measure = measure;
         this.isMonitoring = isMonitoring;
         this.rooms = rooms;
     }
@@ -33,12 +33,12 @@ public class HomeData {
         this.address = address;
     }
 
-    public String getTypeOfUse() {
-        return typeOfUse;
+    public MeasureEnum getMeasure() {
+        return measure;
     }
 
-    public void setTypeOfUse(String typeOfUse) {
-        this.typeOfUse = typeOfUse;
+    public void setMeasure(MeasureEnum measure) {
+        this.measure = measure;
     }
 
     public boolean isMonitoring() {
