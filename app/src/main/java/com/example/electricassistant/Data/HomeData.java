@@ -6,13 +6,15 @@ public class HomeData {
     private String name;
     private String address;
     private MeasureEnum measure;
+    private VoltageEnum voltage;
     private boolean isMonitoring;
     private List<RoomData> rooms;
 
-    public HomeData(String name, String address, MeasureEnum measure, boolean isMonitoring, List<RoomData> rooms) {
+    public HomeData(String name, String address, MeasureEnum measure, VoltageEnum voltage, boolean isMonitoring, List<RoomData> rooms) {
         this.name = name;
         this.address = address;
         this.measure = measure;
+        this.voltage = voltage;
         this.isMonitoring = isMonitoring;
         this.rooms = rooms;
     }
@@ -39,6 +41,14 @@ public class HomeData {
 
     public void setMeasure(MeasureEnum measure) {
         this.measure = measure;
+    }
+
+    public VoltageEnum getVoltage() {
+        return voltage;
+    }
+
+    public void setVoltage(VoltageEnum voltage) {
+        this.voltage = voltage;
     }
 
     public boolean isMonitoring() {

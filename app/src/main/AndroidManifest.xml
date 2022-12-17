@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElectricAssistant">
         <activity
+            android:name=".home.InfoHomeActivity"
+            android:exported="true" />
+        <activity
             android:name=".home.EditHomeActivity"
             android:exported="true" />
         <activity

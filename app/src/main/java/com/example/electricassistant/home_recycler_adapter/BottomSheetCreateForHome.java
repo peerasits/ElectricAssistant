@@ -15,6 +15,7 @@ import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.home.EditHomeActivity;
+import com.example.electricassistant.home.InfoHomeActivity;
 import com.example.electricassistant.ui.HomeSelectFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -26,20 +27,22 @@ public class BottomSheetCreateForHome {
     private View bottomSheetView;
     private BottomSheetDialog bottomSheetDialog;
     private BottomSheetBehavior bottomSheetBehavior;
-
     private TextView menu_bottom_sheet_home_select;
     private TextView menu_bottom_sheet_home_info;
     private TextView menu_bottom_sheet_home_edit;
     private TextView menu_bottom_sheet_home_delete;
     private TextView menu_bottom_sheet_home_cancel;
     private HomeRecyclerViewAdapter homeAdapter = HomeSelectFragment.homeAdapter;
+
     private String selectedHomeName, selectedHomeAddress;
+    private int selectedIndex = -1;
     private boolean isSelectedHome = false;
 
     public void create(FragmentActivity fragmentActivity, String name, String address) {
 
         selectedHomeName = name;
         selectedHomeAddress = address;
+        selectedIndex = searchGlobalData();
 
         bottomSheetView = fragmentActivity.getLayoutInflater().inflate(R.layout.home_bottom_sheet, null);
         bottomSheetDialog = new BottomSheetDialog(fragmentActivity);
@@ -69,6 +72,10 @@ public class BottomSheetCreateForHome {
             @Override
             public void onClick(View view) {
                 Toast.makeText(fragmentActivity, "Clicked info", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(fragmentActivity, InfoHomeActivity.class);
+                intent.putExtra("infoIndex",selectedIndex);
+                fragmentActivity.startActivity(intent);
+
                 bottomSheetDialog.dismiss();
             }
         });
@@ -77,9 +84,9 @@ public class BottomSheetCreateForHome {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(fragmentActivity, EditHomeActivity.class);
-                intent.putExtra("selectedHomeName", selectedHomeName);
-                intent.putExtra("selectedHomeAddress", selectedHomeAddress);
+                intent.putExtra("infoIndex",selectedIndex);
                 fragmentActivity.startActivity(intent);
+
                 bottomSheetDialog.dismiss();
             }
         });
@@ -90,10 +97,9 @@ public class BottomSheetCreateForHome {
 
                 UserData processUser = GlobalData.currentUserData;
 
-                int deleteIndex = searchGlobalData();
-                if (deleteIndex != -1) {
+                if (selectedIndex != -1) {
                     List<HomeData> getList = processUser.getArrHomeData();
-                    getList.remove(deleteIndex);
+                    getList.remove(selectedIndex);
 
                     processUser.setArrHomeData(getList);
 

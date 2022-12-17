@@ -12,6 +12,7 @@ import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.Data.SyncRefreshRateEnum;
 import com.example.electricassistant.Data.UnitEnum;
 import com.example.electricassistant.Data.UserData;
+import com.example.electricassistant.Data.VoltageEnum;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,9 +38,9 @@ public class GlobalData {
 
 
     public static void initHomeData(){
-        homeDataList.add(new HomeData("Home01","Nakhonpathom", MeasureEnum.Above_150,true,roomDataList));
-        homeDataList.add(new HomeData("Home02","Bangkok",MeasureEnum.TOU,false,null));
-        homeDataList.add(new HomeData("Home03","Petchburi",MeasureEnum.Not_Above_150,true,null));
+        homeDataList.add(new HomeData("Home01","Nakhonpathom", MeasureEnum.Above_150, VoltageEnum._110v,true,roomDataList));
+        homeDataList.add(new HomeData("Home02","Bangkok",MeasureEnum.TOU,VoltageEnum._220v,false,null));
+        homeDataList.add(new HomeData("Home03","Petchburi",MeasureEnum.Not_Above_150,VoltageEnum._230v,true,null));
 
     }
 

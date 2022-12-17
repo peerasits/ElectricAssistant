@@ -88,10 +88,10 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 isMonitoring = monitoring_add_home_switch.isChecked();
                 if (homeNameStr != null && addressStr != null) {
                     Toast.makeText(getApplication(), homeNameStr + " : " + addressStr + " : " + voltageStr + " : " + measureStr + " : " + String.valueOf(isMonitoring), Toast.LENGTH_SHORT).show();
-                    MeasureEnum resultMeasure = convertMeasureStrtoEnum(measureStr);
+                    MeasureEnum resultMeasure = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
+                    VoltageEnum resultVoltage = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
 
-
-                    HomeData homeData = new HomeData(homeNameStr, addressStr,resultMeasure, isMonitoring, null);
+                    HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null);
                     if (GlobalData.currentUserData.getArrHomeData() != null) {
                         GlobalData.currentUserData.getArrHomeData().add(homeData);
 
@@ -104,14 +104,6 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
-    private MeasureEnum convertMeasureStrtoEnum(String measureStr){
-        MeasureEnum resultMeasure;
-        if (measureStr.equals(MeasureEnum.Above_150.toString()))
-            resultMeasure = MeasureEnum.Above_150;
-        else if (measureStr.equals(MeasureEnum.Not_Above_150.toString()))
-            resultMeasure = MeasureEnum.Not_Above_150;
-        else
-            resultMeasure = MeasureEnum.TOU;
-        return resultMeasure;
-    }
+
+
 }
