@@ -66,4 +66,16 @@ public class HomeData {
     public void setRooms(List<RoomData> rooms) {
         this.rooms = rooms;
     }
+
+    @Override
+    public String toString() {
+        return "HomeData{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", measure=" + measure +
+                ", voltage=" + voltage +
+                ", isMonitoring=" + isMonitoring +
+                ", rooms=" + rooms +
+                '}';
+    }
 }

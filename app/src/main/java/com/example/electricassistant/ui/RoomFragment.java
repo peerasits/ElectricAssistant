@@ -81,6 +81,7 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_room, container, false);
         roomlist_recyclerview = v.findViewById(R.id.roomlist_recyclerview);
         no_data_room_tv = v.findViewById(R.id.no_data_room_tv);
+        no_data_room_tv.setVisibility(View.GONE);
 
         add_room_btn = v.findViewById(R.id.add_room_btn);
         add_room_btn.setOnClickListener(this::onClick);

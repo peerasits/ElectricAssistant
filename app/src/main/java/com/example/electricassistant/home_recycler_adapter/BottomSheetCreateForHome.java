@@ -71,7 +71,6 @@ public class BottomSheetCreateForHome {
         menu_bottom_sheet_home_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(fragmentActivity, "Clicked info", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(fragmentActivity, InfoHomeActivity.class);
                 intent.putExtra("infoIndex",selectedIndex);
                 fragmentActivity.startActivity(intent);
@@ -154,7 +153,7 @@ public class BottomSheetCreateForHome {
             if (GlobalData.currentUserData.getArrHomeData().get(i).getName().equals(selectedHomeName) &&
                     GlobalData.currentUserData.getArrHomeData().get(i).getAddress().equals(selectedHomeAddress)) {
                 selectedIndex = i;
-                if (GlobalData.currentUserData.getArrHomeData().get(i) == GlobalData.homeSelected)
+                if (GlobalData.currentUserData.getArrHomeData().get(i) == GlobalData.currentUserData.getHomeSelected())
                     isSelectedHome = true;
                 break;
             }

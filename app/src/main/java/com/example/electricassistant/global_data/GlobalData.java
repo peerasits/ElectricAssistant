@@ -22,7 +22,7 @@ public class GlobalData {
     public static UserData currentUserData;
     private static List<HomeData> homeDataList = new ArrayList<HomeData>();
     private static List<RoomData> roomDataList = new ArrayList<RoomData>();
-    public static HomeData homeSelected;
+    private static HomeData homeSelected;
 
     public static void initUserData(){
         ininRoomData();
@@ -30,10 +30,10 @@ public class GlobalData {
 
         LocalDateTime localDateTime = LocalDateTime.now();
         int indexHomeSelected = 0;
-        currentUserData = new UserData(null,"Porome",localDateTime,homeDataList,indexHomeSelected,null,true,false,true,
+        HomeData homeSeleted = homeDataList.get(indexHomeSelected);
+        currentUserData = new UserData(null,"Porome",localDateTime,homeDataList,indexHomeSelected,homeSeleted,true,false,true,
                 FontSizeEnum.Normal,CurrencyEnum.THB,GaugeUnitEnum.kilowatt,UnitEnum.kilowatt,GaugeRefreshRateEnum.sec5,SyncRefreshRateEnum.week1,GuageTypeEnum.ElectricityUsageGauge);
-        homeSelected = homeDataList.get(indexHomeSelected);
-        currentUserData.setHomeSelected(homeSelected);
+
     }
 
 

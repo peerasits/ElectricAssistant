@@ -85,6 +85,7 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
         View v = inflater.inflate(R.layout.fragment_home_select, container, false);
         homelist_recyclerview = v.findViewById(R.id.homelist_recyclerview);
         no_data_homeselect_tv = v.findViewById(R.id.no_data_homeselect_tv);
+        no_data_homeselect_tv.setVisibility(View.GONE);
         setHomeRecyclerView();
 
         addHomeBtn = v.findViewById(R.id.add_home_btn);
