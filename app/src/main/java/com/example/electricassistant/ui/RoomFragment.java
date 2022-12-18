@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
@@ -76,6 +77,8 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     private TextView no_data_room_tv;
     private ImageView home_room_pic_label_img;
 
+    private String homePicUrl = "https://mccoymart.com/post/wp-content/uploads/2020/03/Home-Design-and-Plans-According-to-Vastu-Shastra.jpg";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,6 +91,7 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         add_room_btn.setOnClickListener(this::onClick);
         home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
         home_room_pic_label_img.setImageResource(R.mipmap.home_example);
+        Glide.with(getActivity()).load(homePicUrl).fitCenter().into(home_room_pic_label_img);
 
         if(GlobalData.currentUserData.getHomeSelected()!=null) {
             roomData = GlobalData.currentUserData.getHomeSelected().getRooms();
