@@ -19,6 +19,7 @@ import com.example.electricassistant.global_data.GlobalData;
 public class EditHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText home_edit_home_et, address_edit_home_et;
+    private EditText homepic_url_title_edit_home_et;
     private Switch monitoring_edit_home_switch;
     private Spinner voltage_edit_home_spinner;
     private Spinner measure_edit_home_spinner;
@@ -52,12 +53,14 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
         home_edit_home_et = findViewById(R.id.home_edit_home_et);
         address_edit_home_et = findViewById(R.id.address_edit_home_et);
         monitoring_edit_home_switch = findViewById(R.id.monitoring_edit_home_switch);
+        homepic_url_title_edit_home_et = findViewById(R.id.homepic_url_title_edit_home_et);
 
         resultHomeData = GlobalData.currentUserData.getArrHomeData().get(selectedIndex);
         if (resultHomeData != null) {
             home_edit_home_et.setText(resultHomeData.getName());
             address_edit_home_et.setText(resultHomeData.getAddress());
             monitoring_edit_home_switch.setChecked(resultHomeData.isMonitoring());
+            homepic_url_title_edit_home_et.setText(resultHomeData.getUrlOfHome());
         }
 
         VoltageEnum voltageEnum = resultHomeData.getVoltage();
@@ -117,6 +120,7 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
             selectedHomeForUpdate.setName(home_edit_home_et.getText().toString());
             selectedHomeForUpdate.setAddress(address_edit_home_et.getText().toString());
             selectedHomeForUpdate.setMonitoring(monitoring_edit_home_switch.isChecked());
+            selectedHomeForUpdate.setUrlOfHome(homepic_url_title_edit_home_et.getText().toString());
 
             voltageStr = voltage_edit_home_spinner.getSelectedItem().toString();
             measureStr = measure_edit_home_spinner.getSelectedItem().toString();

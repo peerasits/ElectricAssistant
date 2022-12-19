@@ -95,7 +95,7 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         home_room_pic_label_img.setImageResource(R.mipmap.home_example);
         home_name_room_label_tv = v.findViewById(R.id.home_name_room_label_tv);
         home_name_room_label_tv.setText("  "+homeSelected.getName());
-        Glide.with(getActivity()).load(homeSelected.getUriOfHome()).fitCenter().into(home_room_pic_label_img);
+        Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
 
         if(GlobalData.currentUserData.getHomeSelected()!=null) {
             roomData = homeSelected.getRooms();
@@ -117,7 +117,6 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         roomRecyclerViewAdapter.notifyDataSetChanged();
         roomlist_recyclerview.setAdapter(roomRecyclerViewAdapter);
         roomlist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
     }
 
