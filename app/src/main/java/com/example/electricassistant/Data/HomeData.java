@@ -9,14 +9,16 @@ public class HomeData {
     private VoltageEnum voltage;
     private boolean isMonitoring;
     private List<RoomData> rooms;
+    private String uriOfHome;
 
-    public HomeData(String name, String address, MeasureEnum measure, VoltageEnum voltage, boolean isMonitoring, List<RoomData> rooms) {
+    public HomeData(String name, String address, MeasureEnum measure, VoltageEnum voltage, boolean isMonitoring, List<RoomData> rooms, String uriOfHome) {
         this.name = name;
         this.address = address;
         this.measure = measure;
         this.voltage = voltage;
         this.isMonitoring = isMonitoring;
         this.rooms = rooms;
+        this.uriOfHome = uriOfHome;
     }
 
     public String getName() {
@@ -67,6 +69,14 @@ public class HomeData {
         this.rooms = rooms;
     }
 
+    public String getUriOfHome() {
+        return uriOfHome;
+    }
+
+    public void setUriOfHome(String uriOfHome) {
+        this.uriOfHome = uriOfHome;
+    }
+
     @Override
     public String toString() {
         return "HomeData{" +
@@ -76,6 +86,7 @@ public class HomeData {
                 ", voltage=" + voltage +
                 ", isMonitoring=" + isMonitoring +
                 ", rooms=" + rooms +
+                ", uriOfHome='" + uriOfHome + '\'' +
                 '}';
     }
 }

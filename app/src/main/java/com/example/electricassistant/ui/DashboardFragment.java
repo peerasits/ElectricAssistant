@@ -326,7 +326,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         refresh_btn.setOnClickListener(this::onClick);
 
         home_title_tv = v.findViewById(R.id.home_title_tv);
-
+        home_title_tv.setText(GlobalData.currentUserData.getHomeSelected().getName());
 
         return v;
     }
@@ -335,7 +335,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         if (GlobalData.currentUserData.getHomeSelected() != null) {
-            home_title_tv.setText(GlobalData.currentUserData.getHomeSelected().getName());
             remove = false;
             handler.postDelayed(runnable, 1000);
         } else {

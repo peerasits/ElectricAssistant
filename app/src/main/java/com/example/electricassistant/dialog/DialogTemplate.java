@@ -35,6 +35,13 @@ public class DialogTemplate {
                 }).show();
     }
 
+    public AlertDialog.Builder generateSummaryAddHomeDialog(Activity activity,String message){
+        return new AlertDialog.Builder(activity)
+                .setTitle("Confirm data to adding?")
+                .setMessage(message)
+                ;
+    }
+
 
 
 

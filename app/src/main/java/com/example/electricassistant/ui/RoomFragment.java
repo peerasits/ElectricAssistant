@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
@@ -75,9 +76,10 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
     private TextView no_data_room_tv;
+    private TextView home_name_room_label_tv;
     private ImageView home_room_pic_label_img;
+    private HomeData homeSelected = GlobalData.currentUserData.getHomeSelected();
 
-    private String homePicUrl = "https://mccoymart.com/post/wp-content/uploads/2020/03/Home-Design-and-Plans-According-to-Vastu-Shastra.jpg";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,10 +93,12 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         add_room_btn.setOnClickListener(this::onClick);
         home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
         home_room_pic_label_img.setImageResource(R.mipmap.home_example);
-        Glide.with(getActivity()).load(homePicUrl).fitCenter().into(home_room_pic_label_img);
+        home_name_room_label_tv = v.findViewById(R.id.home_name_room_label_tv);
+        home_name_room_label_tv.setText("  "+homeSelected.getName());
+        Glide.with(getActivity()).load(homeSelected.getUriOfHome()).fitCenter().into(home_room_pic_label_img);
 
         if(GlobalData.currentUserData.getHomeSelected()!=null) {
-            roomData = GlobalData.currentUserData.getHomeSelected().getRooms();
+            roomData = homeSelected.getRooms();
         }
 
         if(roomData == null){

@@ -2,6 +2,9 @@ package com.example.electricassistant.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,20 +16,18 @@ import android.widget.Toast;
 
 
 import com.example.electricassistant.Data.MeasureEnum;
-import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.Data.VoltageEnum;
+import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner voltage_add_home_spinner;
     private Spinner measure_add_home_spinner;
     private EditText home_add_home_et, address_add_home_et;
+    private EditText homepic_url_title_add_home_et;
     private Button cancel_add_home_btn, ok_add_home_btn;
     private Switch monitoring_add_home_switch;
 
@@ -37,7 +38,13 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
     private int item;
     private String homeNameStr, addressStr;
     private String voltageStr, measureStr;
+    private String homeUrl;
     private boolean isMonitoring;
+
+    //Dialog section
+    private AlertDialog.Builder summaryDialog;
+
+
 
 
     @Override
@@ -66,11 +73,12 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
         address_add_home_et = findViewById(R.id.address_edit_home_et);
         cancel_add_home_btn = findViewById(R.id.cancel_edit_home_btn);
         cancel_add_home_btn.setOnClickListener(this::onClick);
-        ok_add_home_btn = findViewById(R.id.ok_edit_home_btn);
+        ok_add_home_btn = findViewById(R.id.ok_add_home_btn);
         ok_add_home_btn.setOnClickListener(this::onClick);
         monitoring_add_home_switch = findViewById(R.id.monitoring_edit_home_switch);
         monitoring_add_home_switch.setChecked(true);
 
+        homepic_url_title_add_home_et = findViewById(R.id.homepic_url_title_add_home_et);
 
     }
 
@@ -80,30 +88,48 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.cancel_edit_home_btn:
                 finish();
                 break;
-            case R.id.ok_edit_home_btn:
+            case R.id.ok_add_home_btn:
                 homeNameStr = home_add_home_et.getText().toString();
                 addressStr = address_add_home_et.getText().toString();
                 voltageStr = voltage_add_home_spinner.getSelectedItem().toString();
                 measureStr = measure_add_home_spinner.getSelectedItem().toString();
                 isMonitoring = monitoring_add_home_switch.isChecked();
-                if (homeNameStr != null && addressStr != null) {
-                    Toast.makeText(getApplication(), homeNameStr + " : " + addressStr + " : " + voltageStr + " : " + measureStr + " : " + String.valueOf(isMonitoring), Toast.LENGTH_SHORT).show();
-                    MeasureEnum resultMeasure = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
-                    VoltageEnum resultVoltage = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
+                homeUrl = homepic_url_title_add_home_et.getText().toString();
+                MeasureEnum resultMeasure = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
+                VoltageEnum resultVoltage = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
 
-                    HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null);
-                    if (GlobalData.currentUserData.getArrHomeData() != null) {
-                        GlobalData.currentUserData.getArrHomeData().add(homeData);
+                HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null,homeUrl);
 
+
+                summaryDialog = new DialogTemplate().generateSummaryAddHomeDialog(this,homeData.toString());
+                summaryDialog.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (GlobalData.currentUserData.getArrHomeData() != null) {
+                            GlobalData.currentUserData.getArrHomeData().add(homeData);
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Error to add this home.", Toast.LENGTH_SHORT).show();
+                        }
+                        finish();
                     }
-                    finish();
-                }
+                });
+                summaryDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                });
+                summaryDialog.show();
+
                 break;
             default:
-                Toast.makeText(getApplication(), "default case", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Default case", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
+
+
 
 
 }

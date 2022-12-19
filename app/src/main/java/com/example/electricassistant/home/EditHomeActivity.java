@@ -46,7 +46,7 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
 
         cancel_edit_home_btn = findViewById(R.id.cancel_edit_home_btn);
         cancel_edit_home_btn.setOnClickListener(this::onClick);
-        ok_edit_home_btn = findViewById(R.id.ok_edit_home_btn);
+        ok_edit_home_btn = findViewById(R.id.ok_add_home_btn);
         ok_edit_home_btn.setOnClickListener(this::onClick);
 
         home_edit_home_et = findViewById(R.id.home_edit_home_et);
@@ -99,7 +99,7 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
             case R.id.cancel_edit_home_btn:
                 finish();
                 break;
-            case R.id.ok_edit_home_btn:
+            case R.id.ok_add_home_btn:
                 updateHomeDataToGlobal();
                 finish();
                 break;
