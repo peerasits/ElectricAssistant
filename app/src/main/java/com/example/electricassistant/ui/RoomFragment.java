@@ -1,5 +1,6 @@
 package com.example.electricassistant.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
+import com.example.electricassistant.room.AddRoomActivity;
 import com.example.electricassistant.room_recycler_adapter.RoomRecyclerViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -75,11 +77,13 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     private RoomRecyclerViewAdapter roomRecyclerViewAdapter;
     private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
-    private TextView no_data_room_tv;
+    private static TextView no_data_room_tv;
     private TextView home_name_room_label_tv;
     private ImageView home_room_pic_label_img;
-    private HomeData homeSelected = GlobalData.currentUserData.getHomeSelected();
 
+
+    private HomeData homeSelected = GlobalData.currentUserData.getHomeSelected();
+    private Intent addRoomIntent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,17 +98,17 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
         home_room_pic_label_img.setImageResource(R.mipmap.home_example);
         home_name_room_label_tv = v.findViewById(R.id.home_name_room_label_tv);
-        home_name_room_label_tv.setText("  "+homeSelected.getName());
+        home_name_room_label_tv.setText("  " + homeSelected.getName());
         Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
 
-        if(GlobalData.currentUserData.getHomeSelected()!=null) {
+        if (GlobalData.currentUserData.getHomeSelected() != null) {
             roomData = homeSelected.getRooms();
         }
 
-        if(roomData == null){
+        if (roomData == null) {
             roomData = new ArrayList<RoomData>();
             no_data_room_tv.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             no_data_room_tv.setVisibility(View.GONE);
         }
 
@@ -112,8 +116,8 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
-    private void setRoomRecyclerView(){
-        roomRecyclerViewAdapter = new RoomRecyclerViewAdapter(getActivity(),roomData);
+    private void setRoomRecyclerView() {
+        roomRecyclerViewAdapter = new RoomRecyclerViewAdapter(getActivity(), roomData);
         roomRecyclerViewAdapter.notifyDataSetChanged();
         roomlist_recyclerview.setAdapter(roomRecyclerViewAdapter);
         roomlist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -121,10 +125,28 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        setRoomRecyclerView();
+        setNoDataTextView();
+    }
+
+    private static void setNoDataTextView() {
+        List<RoomData> selectedRoomList = GlobalData.currentUserData.getHomeSelected().getRooms();
+        if (selectedRoomList == null || selectedRoomList.size() <= 0) {
+            no_data_room_tv.setVisibility(View.VISIBLE);
+        } else {
+            no_data_room_tv.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.add_room_btn:
-                Toast.makeText(getActivity(), "You clicked add button.", Toast.LENGTH_SHORT).show();
+                addRoomIntent = new Intent(getActivity(), AddRoomActivity.class);
+                startActivity(addRoomIntent);
+
                 break;
             default:
                 Toast.makeText(getActivity(), "Default case.", Toast.LENGTH_SHORT).show();

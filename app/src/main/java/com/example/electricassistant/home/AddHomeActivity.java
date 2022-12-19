@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,12 +20,13 @@ import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.R;
+import com.example.electricassistant.util.ConvertEnumFromString;
 
 public class AddHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Spinner voltage_add_home_spinner;
     private Spinner measure_add_home_spinner;
-    private EditText home_add_home_et, address_add_home_et;
+    private EditText name_add_home_et, address_add_home_et;
     private EditText homepic_url_title_add_home_et;
     private Button cancel_add_home_btn, ok_add_home_btn;
     private Switch monitoring_add_home_switch;
@@ -46,7 +46,6 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,27 +54,18 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().setTitle("Add home");
 
 
-        voltage_add_home_spinner = findViewById(R.id.voltage_edit_home_spinner);
-        ArrayAdapter<String> spinnerVoltageArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, voltages);
-        spinnerVoltageArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        voltage_add_home_spinner.setAdapter(spinnerVoltageArrayAdapter);
-        item = spinnerVoltageArrayAdapter.getPosition(voltages[defaultVoltageIndex]);
-        voltage_add_home_spinner.setSelection(item);
+        voltage_add_home_spinner = findViewById(R.id.voltage_add_home_spinner);
+        measure_add_home_spinner = findViewById(R.id.measure_add_home_spinner);
+        initHomeSpinner();
 
-        measure_add_home_spinner = findViewById(R.id.measure_edit_home_spinner);
-        ArrayAdapter<String> spinnerMeasureArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, measures);
-        spinnerMeasureArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        measure_add_home_spinner.setAdapter(spinnerMeasureArrayAdapter);
-        item = spinnerMeasureArrayAdapter.getPosition(measures[defaultMeasureIndex]);
-        measure_add_home_spinner.setSelection(item);
 
-        home_add_home_et = findViewById(R.id.home_edit_home_et);
-        address_add_home_et = findViewById(R.id.address_edit_home_et);
-        cancel_add_home_btn = findViewById(R.id.cancel_edit_home_btn);
+        name_add_home_et = findViewById(R.id.name_add_home_et);
+        address_add_home_et = findViewById(R.id.address_add_home_et);
+        cancel_add_home_btn = findViewById(R.id.cancel_add_home_btn);
         cancel_add_home_btn.setOnClickListener(this::onClick);
-        ok_add_home_btn = findViewById(R.id.ok_add_home_btn);
+        ok_add_home_btn = findViewById(R.id.Adding_add_home_btn);
         ok_add_home_btn.setOnClickListener(this::onClick);
-        monitoring_add_home_switch = findViewById(R.id.monitoring_edit_home_switch);
+        monitoring_add_home_switch = findViewById(R.id.monitoring_add_home_switch);
         monitoring_add_home_switch.setChecked(true);
 
         homepic_url_title_add_home_et = findViewById(R.id.homepic_url_title_add_home_et);
@@ -85,11 +75,11 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.cancel_edit_home_btn:
+            case R.id.cancel_add_home_btn:
                 finish();
                 break;
-            case R.id.ok_add_home_btn:
-                homeNameStr = home_add_home_et.getText().toString();
+            case R.id.Adding_add_home_btn:
+                homeNameStr = name_add_home_et.getText().toString();
                 addressStr = address_add_home_et.getText().toString();
                 voltageStr = voltage_add_home_spinner.getSelectedItem().toString();
                 measureStr = measure_add_home_spinner.getSelectedItem().toString();
@@ -127,6 +117,20 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplication(), "Default case", Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    private void initHomeSpinner(){
+        ArrayAdapter<String> spinnerMeasureArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, measures);
+        spinnerMeasureArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        measure_add_home_spinner.setAdapter(spinnerMeasureArrayAdapter);
+        item = spinnerMeasureArrayAdapter.getPosition(measures[defaultMeasureIndex]);
+        measure_add_home_spinner.setSelection(item);
+
+        ArrayAdapter<String> spinnerVoltageArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, voltages);
+        spinnerVoltageArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        voltage_add_home_spinner.setAdapter(spinnerVoltageArrayAdapter);
+        item = spinnerVoltageArrayAdapter.getPosition(voltages[defaultVoltageIndex]);
+        voltage_add_home_spinner.setSelection(item);
     }
 
 

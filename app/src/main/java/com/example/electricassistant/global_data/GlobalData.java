@@ -10,6 +10,7 @@ import com.example.electricassistant.Data.HomeData;
 import com.example.electricassistant.Data.MeasureEnum;
 import com.example.electricassistant.Data.RoomData;
 import com.example.electricassistant.Data.SyncRefreshRateEnum;
+import com.example.electricassistant.Data.TypeOfRoomEnum;
 import com.example.electricassistant.Data.UnitEnum;
 import com.example.electricassistant.Data.UserData;
 import com.example.electricassistant.Data.VoltageEnum;
@@ -48,8 +49,8 @@ public class GlobalData {
     }
 
     public static void ininRoomData(){
-        roomDataList.add(new RoomData("Living room","This is an example living room",true,null));
-        roomDataList.add(new RoomData("Bed room","Sleepy naja",true,null));
-        roomDataList.add(new RoomData("Kitchen","Les't cook some foods or some drinks",false,null));
+        roomDataList.add(new RoomData("Living room", TypeOfRoomEnum.Dining_Room,"This is an example living room",true,5,null));
+        roomDataList.add(new RoomData("Bed room",TypeOfRoomEnum.Bathroom,"Sleepy naja",true,5,null));
+        roomDataList.add(new RoomData("Kitchen",TypeOfRoomEnum.Bedroom,"Les't cook some foods or some drinks",false,5,null));
     }
 }

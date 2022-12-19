@@ -77,7 +77,6 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
     private static TextView no_data_homeselect_tv;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,31 +95,32 @@ public class HomeSelectFragment extends Fragment implements View.OnClickListener
     }
 
 
-
     @Override
     public void onResume() {
+        super.onResume();
         setHomeRecyclerView();
         setNoDataTextView();
-        super.onResume();
     }
 
-    private void setHomeRecyclerView(){
-        homeAdapter = new HomeRecyclerViewAdapter(getActivity(),homeDataList);
+    private void setHomeRecyclerView() {
+        homeAdapter = new HomeRecyclerViewAdapter(getActivity(), homeDataList);
         homeAdapter.notifyDataSetChanged();
         homelist_recyclerview.setAdapter(homeAdapter);
         homelist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
-    public static void setNoDataTextView(){
-        if(GlobalData.currentUserData.getArrHomeData().size()<=0){
+
+    public static void setNoDataTextView() {
+        List<HomeData> homeDataList = GlobalData.currentUserData.getArrHomeData();
+        if (homeDataList == null || GlobalData.currentUserData.getArrHomeData().size() <= 0) {
             no_data_homeselect_tv.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             no_data_homeselect_tv.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.add_home_btn:
                 intent = new Intent(getActivity(), AddHomeActivity.class);
                 startActivity(intent);

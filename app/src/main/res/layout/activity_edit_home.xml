@@ -154,17 +154,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="cancel"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ok_add_home_btn"
+        app:layout_constraintEnd_toStartOf="@+id/Adding_edit_home_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/ok_add_home_btn"
+        android:id="@+id/Adding_edit_home_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ok"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="@+id/cancel_edit_home_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

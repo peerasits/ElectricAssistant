@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <TextView
-        android:id="@+id/home_title_add_home_tv"
+        android:id="@+id/name_title_add_home_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,22 +32,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Address"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_title_add_home_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/name_title_add_home_tv" />
 
     <EditText
-        android:id="@+id/home_add_home_et"
+        android:id="@+id/name_add_home_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/home_title_add_home_tv"
-        app:layout_constraintStart_toEndOf="@+id/home_title_add_home_tv"
-        app:layout_constraintTop_toTopOf="@+id/home_title_add_home_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/name_title_add_home_tv"
+        app:layout_constraintStart_toEndOf="@+id/name_title_add_home_tv"
+        app:layout_constraintTop_toTopOf="@+id/name_title_add_home_tv" />
 
     <EditText
         android:id="@+id/address_add_home_et"
@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Electricity voltage"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Measure system"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,15 +131,15 @@
         android:layout_marginBottom="16dp"
         android:text="cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ok_add_home_btn"
+        app:layout_constraintEnd_toStartOf="@+id/Adding_add_home_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/ok_add_home_btn"
+        android:id="@+id/Adding_add_home_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ok"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="@+id/cancel_add_home_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
