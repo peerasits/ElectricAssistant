@@ -43,7 +43,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RoomRecyclerVi
 
             @Override
             public void onClick(View view) {
-                bottomSheetCreateForRoom.create(fragmentActivity,rooms.get(position).getName(),rooms.get(position).getDescription());
+                bottomSheetCreateForRoom.create(fragmentActivity,rooms.get(position).getName(),rooms.get(position).getDescription(),position);
             }
         }
         if(position%2 == 0)

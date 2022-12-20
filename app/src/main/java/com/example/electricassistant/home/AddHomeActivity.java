@@ -88,7 +88,7 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 MeasureEnum resultMeasure = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
                 VoltageEnum resultVoltage = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
 
-                HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null,homeUrl);
+                HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null,null,homeUrl);
 
 
                 summaryDialog = new DialogTemplate().generateSummaryAddHomeDialog(this,homeData.toString());

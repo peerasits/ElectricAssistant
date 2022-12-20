@@ -14,6 +14,7 @@ import com.example.electricassistant.data.TypeOfRoomEnum;
 import com.example.electricassistant.data.UnitEnum;
 import com.example.electricassistant.data.UserData;
 import com.example.electricassistant.data.VoltageEnum;
+import com.example.electricassistant.display_data.GeneralDisplayData;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,19 +33,22 @@ public class GlobalData {
         LocalDateTime localDateTime = LocalDateTime.now();
         int indexHomeSelected = 0;
         HomeData homeSeleted = homeDataList.get(indexHomeSelected);
-        currentUserData = new UserData(null,"Porome",localDateTime,homeDataList,indexHomeSelected,homeSeleted,true,false,true,
+        currentUserData = new UserData("Porome",localDateTime,homeDataList,indexHomeSelected,homeSeleted,true,false,true,
                 FontSizeEnum.Normal,CurrencyEnum.THB,GaugeUnitEnum.kilowatt,UnitEnum.kilowatt,GaugeRefreshRateEnum.sec5,SyncRefreshRateEnum.week1,GuageTypeEnum.ElectricityUsageGauge);
 
     }
 
 
     public static void initHomeData(){
+        GeneralDisplayData home01DisplayData = new GeneralDisplayData(0,0,100,LocalDateTime.now(),LocalDateTime.now(),50,0,100);
+        GeneralDisplayData home02DisplayData = new GeneralDisplayData(0,0,200,LocalDateTime.now(),LocalDateTime.now(),50,0,200);
+        GeneralDisplayData home03DisplayData = new GeneralDisplayData(0,0,300,LocalDateTime.now(),LocalDateTime.now(),50,0,300);
         homeDataList.add(new HomeData("Home01","Nakhonpathom", MeasureEnum.Above_150, VoltageEnum._110v,true,roomDataList,
-                "https://media.esperanzahomes.com/153/2021/9/15/AUGUSTIN_Page_7.1920x1440.jpg"));
+                home01DisplayData,"https://media.esperanzahomes.com/153/2021/9/15/AUGUSTIN_Page_7.1920x1440.jpg"));
         homeDataList.add(new HomeData("Home02","Bangkok",MeasureEnum.TOU,VoltageEnum._220v,false,null,
-                "https://www.realestate.com.au/blog/images/2000x1500-fit,progressive/2021/11/24151024/Rawson_Facade2_2000x1500.jpg"));
+                home02DisplayData,"https://www.realestate.com.au/blog/images/2000x1500-fit,progressive/2021/11/24151024/Rawson_Facade2_2000x1500.jpg"));
         homeDataList.add(new HomeData("Home03","Petchburi",MeasureEnum.Not_Above_150,VoltageEnum._230v,true,null,
-                "https://hba-th.org/images/news/Landy_Home_ICON_460_1200x720.jpg"));
+                home03DisplayData,"https://hba-th.org/images/news/Landy_Home_ICON_460_1200x720.jpg"));
 
     }
 

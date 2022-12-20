@@ -31,12 +31,14 @@ public class BottomSheetCreateForRoom implements View.OnClickListener{
     private Intent applianceListIntent;
 
     private String selectedRoomName, selectedRoomDescription;
+    private int indexOfRoom = -1;
 
 
-    public void create(FragmentActivity fragmentActivity,String name,String description){
+    public void create(FragmentActivity fragmentActivity,String name,String description,int position){
         selectedRoomName = name;
         selectedRoomDescription = description;
         this.fragmentActivity = fragmentActivity;
+        indexOfRoom = position;
 
 
         roomBottomSheetView = fragmentActivity.getLayoutInflater().inflate(R.layout.room_botton_sheet,null);
@@ -94,12 +96,14 @@ public class BottomSheetCreateForRoom implements View.OnClickListener{
                 applianceListIntent = new Intent(fragmentActivity, ApplianceDeviceListActivity.class);
                 applianceListIntent.putExtra("roomName",selectedRoomName);
                 applianceListIntent.putExtra("roomDescription", selectedRoomDescription);
+                applianceListIntent.putExtra("indexOfRoom",indexOfRoom);
                 fragmentActivity.startActivity(applianceListIntent);
 
                 roomBottomSheetDialog.dismiss();
                 break;
             case R.id.menu_bottom_sheet_room_info_tv:
                 applianceListIntent = new Intent(fragmentActivity, RoomInfoActivity.class);
+                applianceListIntent.putExtra("indexOfRoom",indexOfRoom);
                 fragmentActivity.startActivity(applianceListIntent);
                 Toast.makeText(fragmentActivity,"This is a info case",Toast.LENGTH_LONG).show();
                 roomBottomSheetDialog.dismiss();

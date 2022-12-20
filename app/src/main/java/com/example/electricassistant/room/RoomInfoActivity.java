@@ -5,12 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.electricassistant.R;
+import com.example.electricassistant.data.RoomData;
+import com.example.electricassistant.global_data.GlobalData;
+
+import java.util.List;
 
 public class RoomInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+
     private Button ok_room_info_btn;
+    private TextView room_info_data_tv;
+    private RoomData roomDataList;
+
+    private Bundle infoBundle;
+
+    private int indexOfRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +31,17 @@ public class RoomInfoActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_room_info);
         getSupportActionBar().setTitle("Room info");
 
+        infoBundle = getIntent().getExtras();
+        indexOfRoom = infoBundle.getInt("indexOfRoom",-1);
+
+
+        roomDataList = GlobalData.currentUserData.getHomeSelected().getRooms().get(indexOfRoom);
+
         ok_room_info_btn = findViewById(R.id.ok_room_info_btn);
         ok_room_info_btn.setOnClickListener(this::onClick);
+
+        room_info_data_tv = findViewById(R.id.room_info_data_tv);
+        room_info_data_tv.setText(roomDataList.toString());
 
     }
 

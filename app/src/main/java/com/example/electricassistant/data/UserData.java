@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class UserData {
-    private GeneralDisplayData displayData;
+
     private String username;
     private LocalDateTime loginTime;
     private List<HomeData> arrHomeData;
@@ -21,8 +21,7 @@ public class UserData {
     private SyncRefreshRateEnum syncRefreshRate;
     private GuageTypeEnum guageType;
 
-    public UserData(GeneralDisplayData displayData, String username, LocalDateTime loginTime, List<HomeData> arrHomeData, int homeSelectedIndex, HomeData homeSelected, boolean enableNotification, boolean ignoreNotification, boolean enableSoundNotification, FontSizeEnum fontSize, CurrencyEnum currency, GaugeUnitEnum unitOfGauge, UnitEnum unitOfSystem, GaugeRefreshRateEnum gaugeRefreshRate, SyncRefreshRateEnum syncRefreshRate, GuageTypeEnum guageType) {
-        this.displayData = displayData;
+    public UserData(String username, LocalDateTime loginTime, List<HomeData> arrHomeData, int homeSelectedIndex, HomeData homeSelected, boolean enableNotification, boolean ignoreNotification, boolean enableSoundNotification, FontSizeEnum fontSize, CurrencyEnum currency, GaugeUnitEnum unitOfGauge, UnitEnum unitOfSystem, GaugeRefreshRateEnum gaugeRefreshRate, SyncRefreshRateEnum syncRefreshRate, GuageTypeEnum guageType) {
         this.username = username;
         this.loginTime = loginTime;
         this.arrHomeData = arrHomeData;
@@ -38,14 +37,6 @@ public class UserData {
         this.gaugeRefreshRate = gaugeRefreshRate;
         this.syncRefreshRate = syncRefreshRate;
         this.guageType = guageType;
-    }
-
-    public GeneralDisplayData getDisplayData() {
-        return displayData;
-    }
-
-    public void setDisplayData(GeneralDisplayData displayData) {
-        this.displayData = displayData;
     }
 
     public String getUsername() {
@@ -166,27 +157,5 @@ public class UserData {
 
     public void setGuageType(GuageTypeEnum guageType) {
         this.guageType = guageType;
-    }
-
-    @Override
-    public String toString() {
-        return "UserData{" +
-                "displayData=" + displayData +
-                ", username='" + username + '\'' +
-                ", loginTime=" + loginTime +
-                ", arrHomeData=" + arrHomeData +
-                ", homeSelectedIndex=" + homeSelectedIndex +
-                ", homeSelected=" + homeSelected +
-                ", enableNotification=" + enableNotification +
-                ", ignoreNotification=" + ignoreNotification +
-                ", enableSoundNotification=" + enableSoundNotification +
-                ", fontSize=" + fontSize +
-                ", currency=" + currency +
-                ", unitOfGauge=" + unitOfGauge +
-                ", unitOfSystem=" + unitOfSystem +
-                ", gaugeRefreshRate=" + gaugeRefreshRate +
-                ", syncRefreshRate=" + syncRefreshRate +
-                ", guageType=" + guageType +
-                '}';
     }
 }

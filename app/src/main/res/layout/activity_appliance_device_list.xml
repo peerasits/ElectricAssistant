@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".appliance_device.ApplianceDeviceListActivity">
 
+    <ImageView
+        android:id="@+id/appliance_list_pic_label_img"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:alpha="0.50"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appliance_list_name_title_tv"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:alpha="0.85"
+        android:background="#CACACA"
+        android:gravity="bottom|center_vertical"
+        android:text="  Room example"
+        android:textColor="#202020"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/appliance_list_pic_label_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/appliance_list_label_tv"
         android:layout_width="wrap_content"
@@ -14,5 +40,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appliance_list_pic_label_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

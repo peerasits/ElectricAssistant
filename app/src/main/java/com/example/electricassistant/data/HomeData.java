@@ -1,5 +1,7 @@
 package com.example.electricassistant.data;
 
+import com.example.electricassistant.display_data.GeneralDisplayData;
+
 import java.util.List;
 
 public class HomeData {
@@ -9,15 +11,18 @@ public class HomeData {
     private VoltageEnum voltage;
     private boolean isMonitoring;
     private List<RoomData> rooms;
+    private GeneralDisplayData displayData;
     private String urlOfHome;
 
-    public HomeData(String name, String address, MeasureEnum measure, VoltageEnum voltage, boolean isMonitoring, List<RoomData> rooms, String urlOfHome) {
+    public HomeData(String name, String address, MeasureEnum measure, VoltageEnum voltage,
+                    boolean isMonitoring, List<RoomData> rooms, GeneralDisplayData displayData, String urlOfHome) {
         this.name = name;
         this.address = address;
         this.measure = measure;
         this.voltage = voltage;
         this.isMonitoring = isMonitoring;
         this.rooms = rooms;
+        this.displayData = displayData;
         this.urlOfHome = urlOfHome;
     }
 
@@ -69,24 +74,19 @@ public class HomeData {
         this.rooms = rooms;
     }
 
+    public GeneralDisplayData getDisplayData() {
+        return displayData;
+    }
+
+    public void setDisplayData(GeneralDisplayData displayData) {
+        this.displayData = displayData;
+    }
+
     public String getUrlOfHome() {
         return urlOfHome;
     }
 
     public void setUrlOfHome(String urlOfHome) {
         this.urlOfHome = urlOfHome;
-    }
-
-    @Override
-    public String toString() {
-        return "HomeData{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", measure=" + measure +
-                ", voltage=" + voltage +
-                ", isMonitoring=" + isMonitoring +
-                ", rooms=" + rooms +
-                ", urlOfHome='" + urlOfHome + '\'' +
-                '}';
     }
 }
