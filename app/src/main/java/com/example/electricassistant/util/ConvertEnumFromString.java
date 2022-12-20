@@ -1,8 +1,8 @@
 package com.example.electricassistant.util;
 
-import com.example.electricassistant.Data.MeasureEnum;
-import com.example.electricassistant.Data.TypeOfRoomEnum;
-import com.example.electricassistant.Data.VoltageEnum;
+import com.example.electricassistant.data.MeasureEnum;
+import com.example.electricassistant.data.TypeOfRoomEnum;
+import com.example.electricassistant.data.VoltageEnum;
 
 public class ConvertEnumFromString {
     public static MeasureEnum convertMeasureStrtoEnum(String measureStr) {

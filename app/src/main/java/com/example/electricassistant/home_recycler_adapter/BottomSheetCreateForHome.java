@@ -9,13 +9,13 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 
-import com.example.electricassistant.Data.HomeData;
-import com.example.electricassistant.Data.UserData;
+import com.example.electricassistant.data.HomeData;
+import com.example.electricassistant.data.UserData;
 import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.home.EditHomeActivity;
-import com.example.electricassistant.home.InfoHomeActivity;
+import com.example.electricassistant.home.HomeInfoActivity;
 import com.example.electricassistant.ui.HomeSelectFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -71,7 +71,7 @@ public class BottomSheetCreateForHome {
         menu_bottom_sheet_home_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(fragmentActivity, InfoHomeActivity.class);
+                Intent intent = new Intent(fragmentActivity, HomeInfoActivity.class);
                 intent.putExtra("infoIndex",selectedIndex);
                 fragmentActivity.startActivity(intent);
 

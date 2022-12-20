@@ -2,17 +2,16 @@ package com.example.electricassistant.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.electricassistant.Data.HomeData;
+import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
 
-public class InfoHomeActivity extends AppCompatActivity implements View.OnClickListener{
+public class HomeInfoActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button close_info_home_btn;
     private TextView info_home_textview;

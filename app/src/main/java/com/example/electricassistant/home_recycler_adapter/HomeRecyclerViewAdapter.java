@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.electricassistant.Data.HomeData;
+import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.R;
 
 import java.util.List;

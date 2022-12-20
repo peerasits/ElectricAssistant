@@ -1,4 +1,4 @@
-package com.example.electricassistant.Data;
+package com.example.electricassistant.data;
 
 import java.util.List;
 

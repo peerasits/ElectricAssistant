@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_room_menu_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/menu_bottom_sheet_room_select_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_subdirectory_arrow_left_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Select" />
+
+    <TextView
+        android:id="@+id/menu_bottom_sheet_room_info_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_info_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Info" />
+
+    <TextView
+        android:id="@+id/menu_bottom_sheet_room_edit_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_edit_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Edit" />
+
+    <TextView
+        android:id="@+id/menu_bottom_sheet_room_delete_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_delete_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Delete" />
+
+    <TextView
+        android:id="@+id/menu_bottom_sheet_room_cancel_tv"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/ic_baseline_cancel_24"
+        android:drawablePadding="@dimen/activity_horizontal_margin"
+        android:gravity="center_vertical"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Cancel" />
+
+</LinearLayout>

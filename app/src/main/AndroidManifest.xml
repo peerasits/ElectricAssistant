@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElectricAssistant">
         <activity
+            android:name=".room.RoomInfoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".appliance_device.ApplianceDeviceListActivity"
+            android:exported="true" />
+        <activity
             android:name=".room.AddRoomActivity"
             android:exported="true" />
         <activity
-            android:name=".home.InfoHomeActivity"
+            android:name=".home.HomeInfoActivity"
             android:exported="true" />
         <activity
             android:name=".home.EditHomeActivity"

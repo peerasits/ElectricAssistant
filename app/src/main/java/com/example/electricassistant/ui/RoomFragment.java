@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.electricassistant.Data.HomeData;
-import com.example.electricassistant.Data.RoomData;
+import com.example.electricassistant.data.HomeData;
+import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.room.AddRoomActivity;

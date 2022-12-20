@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.electricassistant.global_data.GlobalData;
-import com.example.electricassistant.Data.HomeData;
+import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.R;
 import com.example.electricassistant.home_recycler_adapter.HomeRecyclerViewAdapter;
 import com.example.electricassistant.home.AddHomeActivity;
