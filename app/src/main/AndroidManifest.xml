@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ElectricAssistant">
         <activity
+            android:name=".room.EditRoomActivity"
+            android:exported="true" />
+        <activity
             android:name=".room.RoomInfoActivity"
             android:exported="true" />
         <activity

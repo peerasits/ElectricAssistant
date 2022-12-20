@@ -47,8 +47,12 @@ public class DialogTemplate {
                 .setMessage(message)
                 ;
     }
-
-
+    public AlertDialog.Builder generateConfirmToDeleteRoomDialog(Activity activity,String message){
+        return new AlertDialog.Builder(activity)
+                .setTitle("Notification")
+                .setMessage(message)
+                ;
+    }
 
 
 

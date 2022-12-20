@@ -74,7 +74,7 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     }
 
     private RecyclerView roomlist_recyclerview;
-    private RoomRecyclerViewAdapter roomRecyclerViewAdapter;
+    public static RoomRecyclerViewAdapter roomRecyclerViewAdapter;
     private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
     private static TextView no_data_room_tv;
@@ -153,4 +153,6 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+
 }

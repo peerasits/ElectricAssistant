@@ -1,5 +1,6 @@
 package com.example.electricassistant.room_recycler_adapter;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
@@ -11,11 +12,18 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.electricassistant.R;
 import com.example.electricassistant.appliance_device.ApplianceDeviceListActivity;
+import com.example.electricassistant.data.RoomData;
+import com.example.electricassistant.dialog.DialogTemplate;
+import com.example.electricassistant.global_data.GlobalData;
+import com.example.electricassistant.room.EditRoomActivity;
 import com.example.electricassistant.room.RoomInfoActivity;
+import com.example.electricassistant.ui.RoomFragment;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class BottomSheetCreateForRoom implements View.OnClickListener{
+import java.util.List;
+
+public class BottomSheetCreateForRoom implements View.OnClickListener {
 
     private FragmentActivity fragmentActivity;
     private View roomBottomSheetView;
@@ -29,22 +37,26 @@ public class BottomSheetCreateForRoom implements View.OnClickListener{
     private TextView menu_bottom_sheet_room_cancel_tv;
 
     private Intent applianceListIntent;
+    private DialogTemplate dialogTemplate;
 
     private String selectedRoomName, selectedRoomDescription;
     private int indexOfRoom = -1;
+    private RoomRecyclerViewAdapter roomAdapter;
 
 
-    public void create(FragmentActivity fragmentActivity,String name,String description,int position){
+    public void create(FragmentActivity fragmentActivity, String name, String description, int position) {
         selectedRoomName = name;
         selectedRoomDescription = description;
         this.fragmentActivity = fragmentActivity;
         indexOfRoom = position;
+        roomAdapter = RoomFragment.roomRecyclerViewAdapter;
+        dialogTemplate = new DialogTemplate();
 
 
-        roomBottomSheetView = fragmentActivity.getLayoutInflater().inflate(R.layout.room_botton_sheet,null);
+        roomBottomSheetView = fragmentActivity.getLayoutInflater().inflate(R.layout.room_botton_sheet, null);
         roomBottomSheetDialog = new BottomSheetDialog(fragmentActivity);
         roomBottomSheetDialog.setContentView(roomBottomSheetView);
-        roomBottomSheetBehavior = BottomSheetBehavior.from((View)roomBottomSheetView.getParent());
+        roomBottomSheetBehavior = BottomSheetBehavior.from((View) roomBottomSheetView.getParent());
 
         roomBottomSheetDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
@@ -89,32 +101,62 @@ public class BottomSheetCreateForRoom implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.menu_bottom_sheet_room_select_tv:
-                Toast.makeText(fragmentActivity,"This is a select case",Toast.LENGTH_LONG).show();
+                Toast.makeText(fragmentActivity, "This is a select case", Toast.LENGTH_LONG).show();
 
                 applianceListIntent = new Intent(fragmentActivity, ApplianceDeviceListActivity.class);
-                applianceListIntent.putExtra("roomName",selectedRoomName);
+                applianceListIntent.putExtra("roomName", selectedRoomName);
                 applianceListIntent.putExtra("roomDescription", selectedRoomDescription);
-                applianceListIntent.putExtra("indexOfRoom",indexOfRoom);
+                applianceListIntent.putExtra("indexOfRoom", indexOfRoom);
                 fragmentActivity.startActivity(applianceListIntent);
 
                 roomBottomSheetDialog.dismiss();
                 break;
             case R.id.menu_bottom_sheet_room_info_tv:
                 applianceListIntent = new Intent(fragmentActivity, RoomInfoActivity.class);
-                applianceListIntent.putExtra("indexOfRoom",indexOfRoom);
+                applianceListIntent.putExtra("indexOfRoom", indexOfRoom);
                 fragmentActivity.startActivity(applianceListIntent);
-                Toast.makeText(fragmentActivity,"This is a info case",Toast.LENGTH_LONG).show();
                 roomBottomSheetDialog.dismiss();
                 break;
             case R.id.menu_bottom_sheet_room_edit_tv:
-                Toast.makeText(fragmentActivity,"This is a edit case",Toast.LENGTH_LONG).show();
+                applianceListIntent = new Intent(fragmentActivity, EditRoomActivity.class);
+                applianceListIntent.putExtra("roomName", selectedRoomName);
+                applianceListIntent.putExtra("roomDescription", selectedRoomDescription);
+                applianceListIntent.putExtra("indexOfRoom", indexOfRoom);
+                fragmentActivity.startActivity(applianceListIntent);
                 roomBottomSheetDialog.dismiss();
                 break;
             case R.id.menu_bottom_sheet_room_delete_tv:
-                Toast.makeText(fragmentActivity,"This is a delete case",Toast.LENGTH_LONG).show();
+
+                List<RoomData> roomDataList = GlobalData.currentUserData.getHomeSelected().getRooms();
+                AlertDialog.Builder confirmTodeleteDialog = dialogTemplate.generateConfirmToDeleteRoomDialog(fragmentActivity, "Confirm to delete room?");
+                class OnclickDialog implements DialogInterface.OnClickListener {
+
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case -1:
+                                if(roomDataList.get(indexOfRoom) != null){
+                                    roomDataList.remove(indexOfRoom);
+                                    roomAdapter.notifyDataSetChanged();
+                                }
+                                break;
+                            case -2:
+                                break;
+                            default:
+                                break;
+                        }
+                        dialogInterface.dismiss();
+                    }
+                }
+
+                OnclickDialog onclickDialog = new OnclickDialog();
+                confirmTodeleteDialog.setPositiveButton("Confirm", (DialogInterface.OnClickListener) onclickDialog);
+                confirmTodeleteDialog.setNegativeButton("Cancel", (DialogInterface.OnClickListener) onclickDialog);
+                confirmTodeleteDialog.show();
                 roomBottomSheetDialog.dismiss();
+
                 break;
             case R.id.menu_bottom_sheet_room_cancel_tv:
                 roomBottomSheetDialog.dismiss();
