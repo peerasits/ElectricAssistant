@@ -4,17 +4,17 @@ public class ApplianceData {
     private String name;
     private String type;
     private boolean status, iscurrent, isvoltage;
-    private boolean isIgnore, isTimmer, isNotify;
+    private boolean isDeviceMonitoing, isTimmer, isNotify;
     private String description;
     private double defalutVoltage, countdownTime;
 
-    public ApplianceData(String name, String type, boolean status, boolean iscurrent, boolean isvoltage, boolean isIgnore, boolean isTimmer, boolean isNotify, String description, double defalutVoltage, double countdownTime) {
+    public ApplianceData(String name, String type, boolean status, boolean iscurrent, boolean isvoltage, boolean isDeviceMonitoing, boolean isTimmer, boolean isNotify, String description, double defalutVoltage, double countdownTime) {
         this.name = name;
         this.type = type;
         this.status = status;
         this.iscurrent = iscurrent;
         this.isvoltage = isvoltage;
-        this.isIgnore = isIgnore;
+        this.isDeviceMonitoing = isDeviceMonitoing;
         this.isTimmer = isTimmer;
         this.isNotify = isNotify;
         this.description = description;
@@ -62,12 +62,12 @@ public class ApplianceData {
         this.isvoltage = isvoltage;
     }
 
-    public boolean isIgnore() {
-        return isIgnore;
+    public boolean isDeviceMonitoing() {
+        return isDeviceMonitoing;
     }
 
-    public void setIgnore(boolean ignore) {
-        isIgnore = ignore;
+    public void setDeviceMonitoing(boolean deviceMonitoing) {
+        isDeviceMonitoing = deviceMonitoing;
     }
 
     public boolean isTimmer() {

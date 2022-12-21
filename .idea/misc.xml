@@ -26,7 +26,9 @@
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/action_bar_layout.xml" value="0.5" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_add_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_add_room.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_appliance_device_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_appliance_device_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_appliance_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_data_setting.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_edit_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_edit_room.xml" value="0.36666666666666664" />
@@ -38,6 +40,7 @@
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_setting.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_setting_gauge.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/activity_summary_add_home.xml" value="0.33" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/appliance_device_display.xml" value="0.5" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/arcgauge_display_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/content_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/cost_usage_layout.xml" value="0.36666666666666664" />

@@ -36,10 +36,7 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
     private int indexOfRoom = -1;
     private RoomData roomSelected;
     private String[] maxApplianceArr = MaxApplianceEnum.toArray(MaxApplianceEnum.class);
-    private int defaultMaxApplianceIndex = 0;
     private String[] typeOfRoomArr = TypeOfRoomEnum.toArray(TypeOfRoomEnum.class);
-    private int defaultTypeOfRoomIndex = 2;
-    private boolean defaultMonitoring = true;
 
 
     @Override

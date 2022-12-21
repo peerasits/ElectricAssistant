@@ -2,9 +2,12 @@ package com.example.electricassistant.appliance_device;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -12,6 +15,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.electricassistant.R;
+import com.example.electricassistant.appliance_device_recycler_adapter.ApplianceDeviceRecyclerViewAdapter;
+import com.example.electricassistant.data.ApplianceData;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.profile.ProfileActivity;
@@ -20,11 +25,12 @@ import com.example.electricassistant.setting_activity.SettingActivity;
 
 public class ApplianceDeviceListActivity extends AppCompatActivity {
 
-    private TextView appliance_list_label_tv;
     private TextView appliance_list_name_title_tv;
     private ImageView appliance_list_pic_label_img;
+    private static RecyclerView appliance_device_list_recyclerview;
 
     private Bundle roomBundle;
+    private ApplianceDeviceRecyclerViewAdapter applianceAdapter;
 
     private RoomData selectedRoom ;
     private String roomName,roomDescription;
@@ -50,12 +56,24 @@ public class ApplianceDeviceListActivity extends AppCompatActivity {
         appliance_list_pic_label_img = findViewById(R.id.appliance_list_pic_label_img);
         Glide.with(getApplicationContext()).load(testURL).into(appliance_list_pic_label_img);
 
-
         appliance_list_name_title_tv = findViewById(R.id.appliance_list_name_title_tv);
         appliance_list_name_title_tv.setText("  "+selectedRoom.getName());
 
-        appliance_list_label_tv = findViewById(R.id.appliance_list_label_tv);
-        appliance_list_label_tv.setText(roomName+" "+roomDescription);
+        appliance_device_list_recyclerview = findViewById(R.id.appliance_device_list_recyclerview);
+        ApplianceData[] applianceDataArr = new ApplianceData[5];
+        applianceDataArr[0] = new ApplianceData("My device 01","FAN",true,true,true,false,false,true,"My example device"
+                ,220,5);
+        applianceDataArr[1] = new ApplianceData("My device 02","Air conditioner",true,true,true,true,false,true,"My example device 2 naja"
+                ,220,5);
+        applianceDataArr[2] = new ApplianceData("My device 03","Computer",true,true,true,true,false,false,"My pc eiei"
+                ,220,5);
+        applianceDataArr[3] = new ApplianceData("My device 03","Computer",true,true,true,false,false,true,"My pc eiei"
+                ,220,5);
+        applianceDataArr[4] = new ApplianceData("My device 03","Computer",true,true,true,false,false,false,"My pc eiei"
+                ,220,5);
+        applianceAdapter = new ApplianceDeviceRecyclerViewAdapter(getApplicationContext(),applianceDataArr);
+        appliance_device_list_recyclerview.setAdapter(applianceAdapter);
+        appliance_device_list_recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
     }
 
