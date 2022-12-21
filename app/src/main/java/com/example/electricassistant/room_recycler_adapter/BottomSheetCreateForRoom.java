@@ -103,8 +103,6 @@ public class BottomSheetCreateForRoom implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.menu_bottom_sheet_room_select_tv:
-                Toast.makeText(fragmentActivity, "This is a select case", Toast.LENGTH_LONG).show();
-
                 applianceListIntent = new Intent(fragmentActivity, ApplianceDeviceListActivity.class);
                 applianceListIntent.putExtra("roomName", selectedRoomName);
                 applianceListIntent.putExtra("roomDescription", selectedRoomDescription);

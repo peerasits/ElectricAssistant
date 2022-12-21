@@ -1,6 +1,7 @@
 package com.example.electricassistant.global_data;
 
 
+import com.example.electricassistant.data.ApplianceData;
 import com.example.electricassistant.data.CurrencyEnum;
 import com.example.electricassistant.data.FontSizeEnum;
 import com.example.electricassistant.data.GaugeRefreshRateEnum;
@@ -10,6 +11,7 @@ import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.data.MeasureEnum;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data.SyncRefreshRateEnum;
+import com.example.electricassistant.data.TypeOfApplianceEnum;
 import com.example.electricassistant.data.TypeOfRoomEnum;
 import com.example.electricassistant.data.UnitEnum;
 import com.example.electricassistant.data.UserData;
@@ -53,8 +55,22 @@ public class GlobalData {
     }
 
     public static void ininRoomData(){
-        roomDataList.add(new RoomData("Living room", TypeOfRoomEnum.Dining_Room,"This is an example living room",true,5,null));
-        roomDataList.add(new RoomData("Bed room",TypeOfRoomEnum.Bathroom,"Sleepy naja",true,10,null));
-        roomDataList.add(new RoomData("Kitchen",TypeOfRoomEnum.Bedroom,"Les't cook some foods or some drinks",false,5,null));
+        List<ApplianceData> applianceData = new ArrayList<ApplianceData>();
+        applianceData.add(new ApplianceData("My device 01", TypeOfApplianceEnum.Air_conditioner, true, true, true, false, false, true, "My example device"
+                , 220, 5));
+        applianceData.add(new ApplianceData("My device 02", TypeOfApplianceEnum.Electric_fan, true, true, true, true, false, true, "My example device 2 naja"
+                , 220, 5));
+        applianceData.add(new ApplianceData("My device 03", TypeOfApplianceEnum.Lantern_Torch, true, true, true, true, false, false, "My pc eiei"
+                , 220, 5));
+        applianceData.add(new ApplianceData("My device 04", TypeOfApplianceEnum.Kitchen_hood, true, true, true, false, false, true, "My pc eiei"
+                , 220, 5));
+        //applianceData.add(new ApplianceData("My device 05", TypeOfApplianceEnum.Clothes_iron, true, true, true, false, false, false, "My pc eiei"
+               // , 220, 5));
+
+        List<ApplianceData> emptyApplianceData = new ArrayList<ApplianceData>();
+
+        roomDataList.add(new RoomData("Living room", TypeOfRoomEnum.Dining_Room,"This is an example living room",true,5,applianceData));
+        roomDataList.add(new RoomData("Bed room",TypeOfRoomEnum.Bathroom,"Sleepy naja",true,10,emptyApplianceData));
+        roomDataList.add(new RoomData("Kitchen",TypeOfRoomEnum.Bedroom,"Les't cook some foods or some drinks",false,5,emptyApplianceData));
     }
 }

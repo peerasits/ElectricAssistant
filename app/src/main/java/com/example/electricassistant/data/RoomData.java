@@ -1,6 +1,7 @@
 package com.example.electricassistant.data;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class RoomData {
 
@@ -9,15 +10,15 @@ public class RoomData {
     private String description;
     private boolean isMonitoring;
     private int maxAppliances;
-    private ApplianceData[] appliances;
+    private List<ApplianceData> applianceList;
 
-    public RoomData(String name, TypeOfRoomEnum typeOfRoom, String description, boolean isMonitoring, int maxAppliances, ApplianceData[] appliances) {
+    public RoomData(String name, TypeOfRoomEnum typeOfRoom, String description, boolean isMonitoring, int maxAppliances, List<ApplianceData> applianceList) {
         this.name = name;
         this.typeOfRoom = typeOfRoom;
         this.description = description;
         this.isMonitoring = isMonitoring;
         this.maxAppliances = maxAppliances;
-        this.appliances = appliances;
+        this.applianceList = applianceList;
     }
 
     public String getName() {
@@ -60,12 +61,17 @@ public class RoomData {
         this.maxAppliances = maxAppliances;
     }
 
-    public ApplianceData[] getAppliances() {
-        return appliances;
+    public List<ApplianceData> getApplianceList() {
+        return applianceList;
     }
 
-    public void setAppliances(ApplianceData[] appliances) {
-        this.appliances = appliances;
+    public boolean setApplianceList(List<ApplianceData> applianceList) {
+        if (applianceList.size() <= maxAppliances) {
+            this.applianceList = applianceList;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -76,7 +82,7 @@ public class RoomData {
                 ", description='" + description + '\'' +
                 ", isMonitoring=" + isMonitoring +
                 ", maxAppliances=" + maxAppliances +
-                ", appliances=" + Arrays.toString(appliances) +
+                ", applianceList=" + applianceList +
                 '}';
     }
 }

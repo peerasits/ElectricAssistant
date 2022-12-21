@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,28 +18,30 @@ import com.example.electricassistant.R;
 import com.example.electricassistant.appliance_device.ApplianceInfoActivity;
 import com.example.electricassistant.data.ApplianceData;
 
+import java.util.List;
+
 public class ApplianceDeviceRecyclerViewAdapter extends RecyclerView.Adapter<ApplianceDeviceRecyclerViewAdapter.ViewHolder>{
 
     private Context context;
 
     private Intent applianceInfoIntent;
 
-    private ApplianceData[] applianceDataArr;
+    private List<ApplianceData> applianceDataList;
 
-    public ApplianceDeviceRecyclerViewAdapter(Context context, ApplianceData[] applianceDataArr) {
+    public ApplianceDeviceRecyclerViewAdapter(Context context, List<ApplianceData> applianceDataList) {
         this.context = context;
-        this.applianceDataArr = applianceDataArr;
+        this.applianceDataList = applianceDataList;
     }
 
     @NonNull
     @Override
     public ApplianceDeviceRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.appliance_device_display, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.appliancelist_device_display, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ApplianceDeviceRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         class ApplianceItemOnClick implements View.OnClickListener{
             @Override
@@ -55,24 +58,26 @@ public class ApplianceDeviceRecyclerViewAdapter extends RecyclerView.Adapter<App
             }
         }
 
+        String typeOfApplianceStr = applianceDataList.get(position).getTypeOfApplianceEnum().toString().replaceAll("_"," ");
+
         if (position % 2 == 0)
             holder.layout_appliancelist_rv_constraint.setBackgroundColor(Color.rgb(232, 231, 231));
         holder.layout_appliancelist_rv_constraint.setOnClickListener(new ApplianceItemOnClick());
-        holder.name_appliance_list_tv.setText(applianceDataArr[position].getName());
-        holder.type_appliance_list_tv.setText(applianceDataArr[position].getType());
-        holder.description_appliance_list_tv.setText(applianceDataArr[position].getDescription());
-        if (!applianceDataArr[position].isDeviceMonitoing())
+        holder.name_appliance_list_tv.setText(applianceDataList.get(position).getName());
+        holder.type_appliance_list_tv.setText(typeOfApplianceStr);
+        holder.description_appliance_list_tv.setText(applianceDataList.get(position).getDescription());
+        if (!applianceDataList.get(position).isDeviceMonitoing())
             holder.monitoring_appliance_list_img.setVisibility(View.GONE);
-        if (!applianceDataArr[position].isNotify())
+        if (!applianceDataList.get(position).isNotify())
             holder.notification_appliance_list_img.setVisibility(View.GONE);
-
+        holder.powersw_appliance_list_sw.setChecked(applianceDataList.get(position).isStatus());
 
 
     }
 
     @Override
     public int getItemCount() {
-        return applianceDataArr.length;
+        return applianceDataList.size();
     }
 
 
@@ -83,6 +88,7 @@ public class ApplianceDeviceRecyclerViewAdapter extends RecyclerView.Adapter<App
         private TextView description_appliance_list_tv;
         private ImageView monitoring_appliance_list_img;
         private ImageView notification_appliance_list_img;
+        private Switch powersw_appliance_list_sw;
         private ConstraintLayout layout_appliancelist_rv_constraint;
 
 
@@ -94,6 +100,7 @@ public class ApplianceDeviceRecyclerViewAdapter extends RecyclerView.Adapter<App
             description_appliance_list_tv = itemView.findViewById(R.id.description_appliance_list_tv);
             monitoring_appliance_list_img = itemView.findViewById(R.id.monitoring_appliance_list_img);
             notification_appliance_list_img = itemView.findViewById(R.id.notification_appliance_list_img);
+            powersw_appliance_list_sw = itemView.findViewById(R.id.powersw_appliance_list_sw);
             layout_appliancelist_rv_constraint = itemView.findViewById(R.id.layout_appliancelist_rv_constraint);
         }
     }

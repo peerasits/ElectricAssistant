@@ -2,15 +2,17 @@ package com.example.electricassistant.data;
 
 public class ApplianceData {
     private String name;
-    private String type;
+    private TypeOfApplianceEnum typeOfApplianceEnum;
     private boolean status, iscurrent, isvoltage;
     private boolean isDeviceMonitoing, isTimmer, isNotify;
     private String description;
-    private double defalutVoltage, countdownTime;
+    private double defaultVoltage, countdownTime;
 
-    public ApplianceData(String name, String type, boolean status, boolean iscurrent, boolean isvoltage, boolean isDeviceMonitoing, boolean isTimmer, boolean isNotify, String description, double defalutVoltage, double countdownTime) {
+    public ApplianceData(String name, TypeOfApplianceEnum typeOfApplianceEnum, boolean status, boolean iscurrent,
+                         boolean isvoltage, boolean isDeviceMonitoing, boolean isTimmer, boolean isNotify,
+                         String description, double defaultVoltage, double countdownTime) {
         this.name = name;
-        this.type = type;
+        this.typeOfApplianceEnum = typeOfApplianceEnum;
         this.status = status;
         this.iscurrent = iscurrent;
         this.isvoltage = isvoltage;
@@ -18,7 +20,7 @@ public class ApplianceData {
         this.isTimmer = isTimmer;
         this.isNotify = isNotify;
         this.description = description;
-        this.defalutVoltage = defalutVoltage;
+        this.defaultVoltage = defaultVoltage;
         this.countdownTime = countdownTime;
     }
 
@@ -30,12 +32,12 @@ public class ApplianceData {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public TypeOfApplianceEnum getTypeOfApplianceEnum() {
+        return typeOfApplianceEnum;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeOfApplianceEnum(TypeOfApplianceEnum typeOfApplianceEnum) {
+        this.typeOfApplianceEnum = typeOfApplianceEnum;
     }
 
     public boolean isStatus() {
@@ -94,12 +96,12 @@ public class ApplianceData {
         this.description = description;
     }
 
-    public double getDefalutVoltage() {
-        return defalutVoltage;
+    public double getDefaultVoltage() {
+        return defaultVoltage;
     }
 
-    public void setDefalutVoltage(double defalutVoltage) {
-        this.defalutVoltage = defalutVoltage;
+    public void setDefaultVoltage(double defaultVoltage) {
+        this.defaultVoltage = defaultVoltage;
     }
 
     public double getCountdownTime() {

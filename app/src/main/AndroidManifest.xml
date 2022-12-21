@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.electricassistant" >
+    package="com.example.electricassistant">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,7 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ElectricAssistant" >
+        android:theme="@style/Theme.ElectricAssistant">
+        <activity
+            android:name=".appliance_device.AddApplianceActivity"
+            android:exported="true" />
         <activity
             android:name=".appliance_device.ApplianceInfoActivity"
             android:exported="true" />
@@ -54,7 +57,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
