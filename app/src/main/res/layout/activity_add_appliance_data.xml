@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:paddingBottom="60dp">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -191,7 +190,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <Switch
-            android:id="@+id/switch2"
+            android:id="@+id/notification_appliance_sw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -251,7 +250,7 @@
             app:layout_constraintTop_toBottomOf="@+id/current_sensor_appliance_tv" />
 
         <EditText
-            android:id="@+id/current_appliance_app_et"
+            android:id="@+id/current_value_appliance_app_et"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -263,12 +262,12 @@
 
         <Spinner
             android:id="@+id/current_unit_add_spinner"
-            android:layout_width="75dp"
+            android:layout_width="150dp"
             android:layout_height="30dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/current_appliance_app_et"
+            app:layout_constraintBottom_toBottomOf="@+id/current_value_appliance_app_et"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/current_appliance_app_et" />
+            app:layout_constraintTop_toTopOf="@+id/current_value_appliance_app_et" />
 
         <TextView
             android:id="@+id/general_label_appliance_tv"
@@ -280,5 +279,27 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/add_appliance_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="@+id/cancel_appliance_add_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cancel_appliance_add_btn"
+            app:layout_constraintTop_toTopOf="@+id/cancel_appliance_add_btn" />
+
+        <Button
+            android:id="@+id/cancel_appliance_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_appliance_add_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
