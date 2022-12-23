@@ -15,7 +15,6 @@ import com.example.electricassistant.data.MeasureEnum;
 import com.example.electricassistant.data.VoltageEnum;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
-import com.example.electricassistant.util.ConvertEnumFromString;
 
 public class EditHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -125,8 +124,8 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
 
             voltageStr = voltage_edit_home_spinner.getSelectedItem().toString();
             measureStr = measure_edit_home_spinner.getSelectedItem().toString();
-            VoltageEnum voltageEnum = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
-            MeasureEnum measureEnum = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
+            VoltageEnum voltageEnum = VoltageEnum.convertVoltageEnumStrToEnum(voltageStr);
+            MeasureEnum measureEnum = MeasureEnum.convertMeasureEnumStrToEnum(measureStr);
 
             selectedHomeForUpdate.setVoltage(voltageEnum);
             selectedHomeForUpdate.setMeasure(measureEnum);

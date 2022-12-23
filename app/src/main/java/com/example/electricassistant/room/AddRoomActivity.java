@@ -20,7 +20,6 @@ import com.example.electricassistant.data.TypeOfRoomEnum;
 import com.example.electricassistant.R;
 import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
-import com.example.electricassistant.util.ConvertEnumFromString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +104,7 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
         String typeOfRoomStr = type_add_room_spinner.getSelectedItem().toString();
         boolean isMonitoringOfRoom = monitoring_add_room_switch.isChecked();
         int maxApplianceValue = Integer.parseInt(max_appliance_add_room_spinner.getSelectedItem().toString());
-        TypeOfRoomEnum typeOfRoomEnum = ConvertEnumFromString.convertTypeOfRoomToEnum(typeOfRoomStr);
+        TypeOfRoomEnum typeOfRoomEnum = TypeOfRoomEnum.convertTypeOfRoomStrToEnum(typeOfRoomStr);
 
         RoomData roomData = new RoomData(roomNameStr, typeOfRoomEnum, descriptionOfRoomStr, isMonitoringOfRoom, maxApplianceValue, new ArrayList<ApplianceData>(),null);
 

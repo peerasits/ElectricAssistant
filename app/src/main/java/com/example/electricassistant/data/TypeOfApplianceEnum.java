@@ -46,7 +46,7 @@ public enum TypeOfApplianceEnum {
         return result;
     }
 
-    public static TypeOfApplianceEnum convertTypeOfTypeOfApplianceStrToEnum(String typeOfApplianceStr) {
+    public static TypeOfApplianceEnum convertTypeOfApplianceStrToEnum(String typeOfApplianceStr) {
         TypeOfApplianceEnum[] allTypeOfApplianceEnumElements = TypeOfApplianceEnum.values();
         String[] allStringFromTypeOfApplianceEnumElements = toArray(TypeOfApplianceEnum.class);
         TypeOfApplianceEnum resultTypeOfApplianceEnum = null;

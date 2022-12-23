@@ -20,7 +20,6 @@ import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.R;
-import com.example.electricassistant.util.ConvertEnumFromString;
 
 public class AddHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,8 +84,8 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 measureStr = measure_add_home_spinner.getSelectedItem().toString();
                 isMonitoring = monitoring_add_home_switch.isChecked();
                 homeUrl = homepic_url_title_add_home_et.getText().toString();
-                MeasureEnum resultMeasure = ConvertEnumFromString.convertMeasureStrtoEnum(measureStr);
-                VoltageEnum resultVoltage = ConvertEnumFromString.convertVoltageStrToEnum(voltageStr);
+                MeasureEnum resultMeasure = MeasureEnum.convertMeasureEnumStrToEnum(measureStr);
+                VoltageEnum resultVoltage = VoltageEnum.convertVoltageEnumStrToEnum(voltageStr);
 
                 HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null,null,homeUrl);
 

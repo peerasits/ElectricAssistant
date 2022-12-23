@@ -9,17 +9,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.electricassistant.R;
 import com.example.electricassistant.data.MaxApplianceEnum;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data.TypeOfRoomEnum;
 import com.example.electricassistant.global_data.GlobalData;
-import com.example.electricassistant.util.ConvertEnumFromString;
 import com.example.electricassistant.util.ConvertStringFromEnum;
-
-import java.util.List;
 
 public class EditRoomActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -94,7 +90,7 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
         String typeOfRoomEnumEditedValue = type_edit_room_spinner.getSelectedItem().toString();
         int maxApplianceEdited = Integer.parseInt(max_appliance_edit_room_spinner.getSelectedItem().toString());
 
-        TypeOfRoomEnum typeOfRoomEnumEdited = ConvertEnumFromString.convertTypeOfRoomToEnum(typeOfRoomEnumEditedValue);
+        TypeOfRoomEnum typeOfRoomEnumEdited = TypeOfRoomEnum.convertTypeOfRoomStrToEnum(typeOfRoomEnumEditedValue);
 
         roomSelected.setName(namedOfRoomEditedStr);
         roomSelected.setDescription(descriptiondOfRoomEditedStr);

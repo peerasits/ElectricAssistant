@@ -30,4 +30,18 @@ public enum TypeOfRoomEnum {
 
         return result;
     }
+
+    public static TypeOfRoomEnum convertTypeOfRoomStrToEnum(String TypeOfRoomStr){
+        TypeOfRoomEnum[] allOfTypeOfRoomEnumElements = TypeOfRoomEnum.values();
+        String[] allStringFromTypeOfRoomEnumElements = toArray(TypeOfRoomEnum.class);
+        TypeOfRoomEnum resultRoomTypeOfRoomEnum = null;
+
+        for(int i = 0;i<allStringFromTypeOfRoomEnumElements.length;i++){
+            if(allStringFromTypeOfRoomEnumElements[i].indexOf("TypeOfRoomStr")!= -1){
+                resultRoomTypeOfRoomEnum = allOfTypeOfRoomEnumElements[i];
+                break;
+            }
+        }
+        return resultRoomTypeOfRoomEnum;
+    }
 }

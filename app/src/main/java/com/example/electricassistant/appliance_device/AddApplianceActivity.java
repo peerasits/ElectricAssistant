@@ -23,7 +23,6 @@ import com.example.electricassistant.data.TypeOfApplianceEnum;
 import com.example.electricassistant.data.VoltageEnum;
 import com.example.electricassistant.global_data.GlobalData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddApplianceActivity extends AppCompatActivity implements View.OnClickListener{
@@ -166,7 +165,7 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
                 boolean limitHourToAddBool = limit_hours_appliance_sw.isChecked();
                 String amountOfHourToAddStr = amount_hour_appliance_spinner.getSelectedItem().toString();
 
-                TypeOfApplianceEnum typeOfApplianceToAddEnum = TypeOfApplianceEnum.convertTypeOfTypeOfApplianceStrToEnum(typeOfApplianceToAddStr);
+                TypeOfApplianceEnum typeOfApplianceToAddEnum = TypeOfApplianceEnum.convertTypeOfApplianceStrToEnum(typeOfApplianceToAddStr);
                 VoltageEnum voltageEnumToAdd = GlobalData.currentUserData.getHomeSelected().getVoltage();
 
 

@@ -16,4 +16,18 @@ public enum MeasureEnum {
 
         return result;
     }
+
+    public static MeasureEnum convertMeasureEnumStrToEnum(String measureEnumStr){
+        MeasureEnum[] allMeasureEnumElements = MeasureEnum.values();
+        String[] allStringFromMeasureEnumElements = toArray(MeasureEnum.class);
+        MeasureEnum resultMeasureEnum = null;
+
+        for(int i = 0;i<allStringFromMeasureEnumElements.length;i++){
+            if(allStringFromMeasureEnumElements[i].indexOf(measureEnumStr) != -1){
+                resultMeasureEnum = allMeasureEnumElements[i];
+                break;
+            }
+        }
+        return resultMeasureEnum;
+    }
 }
