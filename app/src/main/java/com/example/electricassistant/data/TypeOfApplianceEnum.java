@@ -1,5 +1,6 @@
 package com.example.electricassistant.data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum TypeOfApplianceEnum {
@@ -43,5 +44,19 @@ public enum TypeOfApplianceEnum {
         }
 
         return result;
+    }
+
+    public static TypeOfApplianceEnum convertTypeOfTypeOfApplianceStrToEnum(String typeOfApplianceStr) {
+        TypeOfApplianceEnum[] allTypeOfApplianceEnumElements = TypeOfApplianceEnum.values();
+        String[] allStringFromTypeOfApplianceEnumElements = toArray(TypeOfApplianceEnum.class);
+        TypeOfApplianceEnum resultTypeOfApplianceEnum = null;
+
+        for (int i = 0; i < allStringFromTypeOfApplianceEnumElements.length; i++) {
+            if (allStringFromTypeOfApplianceEnumElements[i].indexOf(typeOfApplianceStr) != -1) {
+                resultTypeOfApplianceEnum = allTypeOfApplianceEnumElements[i];
+                break;
+            }
+        }
+        return resultTypeOfApplianceEnum;
     }
 }

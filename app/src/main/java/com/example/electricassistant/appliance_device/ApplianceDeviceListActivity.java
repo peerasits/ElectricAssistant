@@ -44,8 +44,7 @@ public class ApplianceDeviceListActivity extends AppCompatActivity implements Vi
     private RoomData selectedRoom;
     private String roomName, roomDescription;
     private List<ApplianceData> applianceDataList;
-    private String testURL = "https://www.thespruce.com/thmb/eUo2LkU5ac6wa106kKCO65c4VRU=/750x0/filters:no_upscale():max_bytes" +
-            "(150000):strip_icc():format(webp)/10-3-623702d1d102421b9eb5c90b087e42ff.jpeg";
+    private String testURL;
     private int indexOfRoom;
 
     @Override
@@ -63,6 +62,7 @@ public class ApplianceDeviceListActivity extends AppCompatActivity implements Vi
 
         selectedRoom = GlobalData.currentUserData.getHomeSelected().getRooms().get(indexOfRoom);
         applianceDataList = selectedRoom.getApplianceList();
+        testURL = selectedRoom.getRoomPicUrl();
 
         appliance_list_pic_label_img = findViewById(R.id.appliance_list_pic_label_img);
         Glide.with(getApplicationContext()).load(testURL).into(appliance_list_pic_label_img);
@@ -77,6 +77,12 @@ public class ApplianceDeviceListActivity extends AppCompatActivity implements Vi
         appliance_device_list_recyclerview.setAdapter(applianceAdapter);
         appliance_device_list_recyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        applianceAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -117,9 +123,11 @@ public class ApplianceDeviceListActivity extends AppCompatActivity implements Vi
 
                 if (applianceDataList.size() < selectedRoom.getMaxAppliances()) {
                     addApplianceIntent = new Intent(getApplicationContext(), AddApplianceActivity.class);
+                    addApplianceIntent.putExtra("indexOfRoom", indexOfRoom);
                     startActivity(addApplianceIntent);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Error to add appliance data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Error to add appliance data.The limit of elements is "+
+                            String.valueOf(selectedRoom.getMaxAppliances()), Toast.LENGTH_SHORT).show();
                 }
 
 

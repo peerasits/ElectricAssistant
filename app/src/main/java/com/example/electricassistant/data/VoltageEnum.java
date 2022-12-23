@@ -16,6 +16,20 @@ public enum VoltageEnum {
 
         return result;
     }
+
+    public static VoltageEnum convertVoltageEnumStrToEnum(String voltageStr){
+        VoltageEnum[] allVoltageEnumElements = VoltageEnum.values();
+        String[] allStringFromVoltageEnumElements = toArray(VoltageEnum.class);
+        VoltageEnum resultVoltageEnum = null;
+
+        for(int i = 0;i<allStringFromVoltageEnumElements.length;i++){
+            if(allStringFromVoltageEnumElements[i].indexOf(voltageStr) != -1){
+                resultVoltageEnum = allVoltageEnumElements[i];
+                break;
+            }
+        }
+        return resultVoltageEnum;
+    }
 }
 
 

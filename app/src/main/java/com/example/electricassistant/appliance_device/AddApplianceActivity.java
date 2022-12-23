@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -20,6 +21,10 @@ import com.example.electricassistant.data.ApplianceData;
 import com.example.electricassistant.data.CurrentUnitEnum;
 import com.example.electricassistant.data.TypeOfApplianceEnum;
 import com.example.electricassistant.data.VoltageEnum;
+import com.example.electricassistant.global_data.GlobalData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddApplianceActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -35,13 +40,18 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
     private Spinner current_unit_add_spinner;
     private Spinner amount_hour_appliance_spinner;
     private Button add_appliance_add_btn;
+    private Button cancel_appliance_add_btn;
 
+    private Bundle addApplianceBundle;
+
+    private int indexOfRoom;
     private int defaultTypeOfAppliance;
     private int item;
     private String[] typeOfApplianceArr;
     private String[] currentUnitArr;
     private String[] amountOfHour;
     private ApplianceData applianceData;
+    private List<ApplianceData> applianceDataList;
 
 
     @Override
@@ -50,6 +60,11 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_add_appliance_data);
         getSupportActionBar().setTitle("Add electricity appliance");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        addApplianceBundle = getIntent().getExtras();
+        indexOfRoom = addApplianceBundle.getInt("indexOfRoom",-1);
+        applianceDataList =  GlobalData.currentUserData.getHomeSelected().getRooms().get(indexOfRoom).getApplianceList();
+
 
         typeOfApplianceArr = TypeOfApplianceEnum.toArray(TypeOfApplianceEnum.class);
         defaultTypeOfAppliance = typeOfApplianceArr.length-1;
@@ -68,6 +83,7 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
         current_unit_add_spinner = findViewById(R.id.current_unit_add_spinner);
         amount_hour_appliance_spinner = findViewById(R.id.amount_hour_appliance_spinner);
         add_appliance_add_btn = findViewById(R.id.add_appliance_add_btn);
+        cancel_appliance_add_btn = findViewById(R.id.cancel_appliance_add_btn);
 
         monitoring_appliance_add_sw.setChecked(true);
         current_sensor_appliance_chb.setChecked(true);
@@ -91,7 +107,34 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
         amount_hour_appliance_spinner.setSelection(item);
 
         add_appliance_add_btn.setOnClickListener(this::onClick);
+        cancel_appliance_add_btn.setOnClickListener(this::onClick);
+        initCurrentViews();
+        initLimitOfHourViews();
 
+    }
+
+    private void initCurrentViews(){
+        current_value_appliance_app_et.setEnabled(false);
+        current_unit_add_spinner.setEnabled(false);
+
+        current_sensor_appliance_chb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                current_value_appliance_app_et.setEnabled(!b);
+                current_unit_add_spinner.setEnabled(!b);
+            }
+        });
+    }
+
+    private void initLimitOfHourViews(){
+        amount_hour_appliance_spinner.setEnabled(false);
+
+        limit_hours_appliance_sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                amount_hour_appliance_spinner.setEnabled(!b);
+            }
+        });
     }
 
 
@@ -99,7 +142,7 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
-            case R.id.add_appliance_add_btn:
+            case android.R.id.home:
                 finish();
                 return true;
             default:
@@ -113,21 +156,30 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
         switch (view.getId()){
             case R.id.add_appliance_add_btn:
                 String nameToAddStr = name_appliance_add_et.getText().toString();
-                String typeOfAplianceToAddStr = type_appliance_add_spinner.getSelectedItem().toString();
+                String typeOfApplianceToAddStr = type_appliance_add_spinner.getSelectedItem().toString();
                 String descriptionToAddStr = description_appliance_add_et.getText().toString();
                 boolean monitoringToAddBool = monitoring_appliance_add_sw.isChecked();
                 boolean currentSensorToAddBool = current_sensor_appliance_chb.isChecked();
                 String currentValueToAddStr = current_value_appliance_app_et.getText().toString();
-                boolean voltageSencorToAddBool = voltage_sensor_appliance_add_chb.isChecked();
+                boolean voltageSensorToAddBool = voltage_sensor_appliance_add_chb.isChecked();
                 boolean notificationToAddBool = notification_appliance_sw.isChecked();
                 boolean limitHourToAddBool = limit_hours_appliance_sw.isChecked();
                 String amountOfHourToAddStr = amount_hour_appliance_spinner.getSelectedItem().toString();
 
+                TypeOfApplianceEnum typeOfApplianceToAddEnum = TypeOfApplianceEnum.convertTypeOfTypeOfApplianceStrToEnum(typeOfApplianceToAddStr);
+                VoltageEnum voltageEnumToAdd = GlobalData.currentUserData.getHomeSelected().getVoltage();
 
-                String resultToBeToast = nameToAddStr+ " " + typeOfAplianceToAddStr+" "+descriptionToAddStr+" "+String.valueOf(monitoringToAddBool)+
-                        String.valueOf(currentSensorToAddBool)+" "+currentValueToAddStr+" "+String.valueOf(voltageSencorToAddBool)+
-                        String.valueOf(notificationToAddBool)+" "+String.valueOf(limitHourToAddBool)+" "+amountOfHourToAddStr;
-                Toast.makeText(getApplicationContext(),resultToBeToast, Toast.LENGTH_SHORT).show();
+
+                applianceData = new ApplianceData(nameToAddStr,typeOfApplianceToAddEnum,false,currentSensorToAddBool,voltageSensorToAddBool,monitoringToAddBool
+                        ,limitHourToAddBool,notificationToAddBool,descriptionToAddStr,voltageEnumToAdd,Double.parseDouble(amountOfHourToAddStr));
+                applianceDataList.add(applianceData);
+
+                Toast.makeText(getApplicationContext(), "Added successfully", Toast.LENGTH_SHORT).show();
+
+                finish();
+                break;
+            case R.id.cancel_appliance_add_btn:
+                finish();
                 break;
             default:
                 break;

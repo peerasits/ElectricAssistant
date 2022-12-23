@@ -57,20 +57,23 @@ public class GlobalData {
     public static void ininRoomData(){
         List<ApplianceData> applianceData = new ArrayList<ApplianceData>();
         applianceData.add(new ApplianceData("My device 01", TypeOfApplianceEnum.Air_conditioner, true, true, true, false, false, true, "My example device"
-                , 220, 5));
+                , VoltageEnum._220v, 5));
         applianceData.add(new ApplianceData("My device 02", TypeOfApplianceEnum.Electric_fan, true, true, true, true, false, true, "My example device 2 naja"
-                , 220, 5));
+                , VoltageEnum._110v, 5));
         applianceData.add(new ApplianceData("My device 03", TypeOfApplianceEnum.Lantern_Torch, true, true, true, true, false, false, "My pc eiei"
-                , 220, 5));
+                , VoltageEnum._230v, 5));
         applianceData.add(new ApplianceData("My device 04", TypeOfApplianceEnum.Kitchen_hood, true, true, true, false, false, true, "My pc eiei"
-                , 220, 5));
+                , VoltageEnum._220v, 5));
         //applianceData.add(new ApplianceData("My device 05", TypeOfApplianceEnum.Clothes_iron, true, true, true, false, false, false, "My pc eiei"
                // , 220, 5));
 
-        List<ApplianceData> emptyApplianceData = new ArrayList<ApplianceData>();
 
-        roomDataList.add(new RoomData("Living room", TypeOfRoomEnum.Dining_Room,"This is an example living room",true,5,applianceData));
-        roomDataList.add(new RoomData("Bed room",TypeOfRoomEnum.Bathroom,"Sleepy naja",true,10,emptyApplianceData));
-        roomDataList.add(new RoomData("Kitchen",TypeOfRoomEnum.Bedroom,"Les't cook some foods or some drinks",false,5,emptyApplianceData));
+        roomDataList.add(new RoomData("Living room", TypeOfRoomEnum.Dining_Room,"This is an example living room",true,5,applianceData,
+                "https://www.thespruce.com/thmb/eUo2LkU5ac6wa106kKCO65c4VRU=/750x0/filters:no_upscale():max_bytes" +
+                        "(150000):strip_icc():format(webp)/10-3-623702d1d102421b9eb5c90b087e42ff.jpeg"));
+        roomDataList.add(new RoomData("Bedroom",TypeOfRoomEnum.Bathroom,"Sleepy naja",true,10,new ArrayList<ApplianceData>(),
+                "https://www.ikea.com/images/a-light-grey-slattum-upholstered-bed-and-white-nordli-chests-3b97d440fc5abb6b33ebb5a5a8ebca5b.jpg?f=l"));
+        roomDataList.add(new RoomData("Kitchen",TypeOfRoomEnum.Bedroom,"Les't cook some foods or some drinks",false,5,new ArrayList<ApplianceData>(),
+                "https://foyr.com/learn/wp-content/uploads/2021/06/one-wall-kitchen-design.jpg"));
     }
 }

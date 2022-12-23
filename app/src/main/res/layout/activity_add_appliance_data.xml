@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="Name"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,12 +182,34 @@
             android:id="@+id/notification_appliance_add_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
             android:text="Notification"
             android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintTop_toBottomOf="@+id/general_label_appliance_tv2" />
+
+        <TextView
+            android:id="@+id/limit_hours_appliance_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Limit of hours usage"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notification_appliance_add_tv" />
+
+        <TextView
+            android:id="@+id/amount_hour_appliance_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Amount of hours"
+            android:textSize="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/limit_hours_appliance_tv" />
 
         <Switch
             android:id="@+id/notification_appliance_sw"
@@ -197,17 +219,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/notification_appliance_add_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/notification_appliance_add_tv" />
-
-        <TextView
-            android:id="@+id/limit_hours_appliance_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Limit of hours usage"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notification_appliance_add_tv" />
 
         <Switch
             android:id="@+id/limit_hours_appliance_sw"
@@ -226,17 +237,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/amount_hour_appliance_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/amount_hour_appliance_tv" />
-
-        <TextView
-            android:id="@+id/amount_hour_appliance_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Amount of hours"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/limit_hours_appliance_tv" />
 
         <TextView
             android:id="@+id/current_appliance_add_tv"
@@ -280,6 +280,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/general_label_appliance_tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="Extra"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
         <Button
             android:id="@+id/add_appliance_add_btn"
             android:layout_width="wrap_content"
@@ -295,11 +306,13 @@
             android:id="@+id/cancel_appliance_add_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
             android:layout_marginBottom="16dp"
             android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add_appliance_add_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amount_hour_appliance_tv" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

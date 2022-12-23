@@ -6,11 +6,13 @@ public class ApplianceData {
     private boolean status, iscurrent, isvoltage;
     private boolean isDeviceMonitoing, isTimmer, isNotify;
     private String description;
-    private double defaultVoltage, countdownTime;
+    private VoltageEnum defaultVoltage;
+    private double countdownTime;
 
-    public ApplianceData(String name, TypeOfApplianceEnum typeOfApplianceEnum, boolean status, boolean iscurrent,
-                         boolean isvoltage, boolean isDeviceMonitoing, boolean isTimmer, boolean isNotify,
-                         String description, double defaultVoltage, double countdownTime) {
+    public ApplianceData(String name, TypeOfApplianceEnum typeOfApplianceEnum, boolean status,
+                         boolean iscurrent, boolean isvoltage, boolean isDeviceMonitoing,
+                         boolean isTimmer, boolean isNotify, String description, VoltageEnum defaultVoltage,
+                         double countdownTime) {
         this.name = name;
         this.typeOfApplianceEnum = typeOfApplianceEnum;
         this.status = status;
@@ -96,11 +98,11 @@ public class ApplianceData {
         this.description = description;
     }
 
-    public double getDefaultVoltage() {
+    public VoltageEnum getDefaultVoltage() {
         return defaultVoltage;
     }
 
-    public void setDefaultVoltage(double defaultVoltage) {
+    public void setDefaultVoltage(VoltageEnum defaultVoltage) {
         this.defaultVoltage = defaultVoltage;
     }
 

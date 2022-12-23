@@ -11,14 +11,16 @@ public class RoomData {
     private boolean isMonitoring;
     private int maxAppliances;
     private List<ApplianceData> applianceList;
+    private String roomPicUrl;
 
-    public RoomData(String name, TypeOfRoomEnum typeOfRoom, String description, boolean isMonitoring, int maxAppliances, List<ApplianceData> applianceList) {
+    public RoomData(String name, TypeOfRoomEnum typeOfRoom, String description, boolean isMonitoring, int maxAppliances, List<ApplianceData> applianceList, String roomPicUrl) {
         this.name = name;
         this.typeOfRoom = typeOfRoom;
         this.description = description;
         this.isMonitoring = isMonitoring;
         this.maxAppliances = maxAppliances;
         this.applianceList = applianceList;
+        this.roomPicUrl = roomPicUrl;
     }
 
     public String getName() {
@@ -65,13 +67,16 @@ public class RoomData {
         return applianceList;
     }
 
-    public boolean setApplianceList(List<ApplianceData> applianceList) {
-        if (applianceList.size() <= maxAppliances) {
-            this.applianceList = applianceList;
-            return true;
-        }else{
-            return false;
-        }
+    public void setApplianceList(List<ApplianceData> applianceList) {
+        this.applianceList = applianceList;
+    }
+
+    public String getRoomPicUrl() {
+        return roomPicUrl;
+    }
+
+    public void setRoomPicUrl(String roomPicUrl) {
+        this.roomPicUrl = roomPicUrl;
     }
 
     @Override
@@ -83,6 +88,7 @@ public class RoomData {
                 ", isMonitoring=" + isMonitoring +
                 ", maxAppliances=" + maxAppliances +
                 ", applianceList=" + applianceList +
+                ", roomPicUrl='" + roomPicUrl + '\'' +
                 '}';
     }
 }

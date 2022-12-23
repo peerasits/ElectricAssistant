@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.electricassistant.data.ApplianceData;
 import com.example.electricassistant.data.MaxApplianceEnum;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data.TypeOfRoomEnum;
@@ -106,7 +107,7 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
         int maxApplianceValue = Integer.parseInt(max_appliance_add_room_spinner.getSelectedItem().toString());
         TypeOfRoomEnum typeOfRoomEnum = ConvertEnumFromString.convertTypeOfRoomToEnum(typeOfRoomStr);
 
-        RoomData roomData = new RoomData(roomNameStr, typeOfRoomEnum, descriptionOfRoomStr, isMonitoringOfRoom, maxApplianceValue, null);
+        RoomData roomData = new RoomData(roomNameStr, typeOfRoomEnum, descriptionOfRoomStr, isMonitoringOfRoom, maxApplianceValue, new ArrayList<ApplianceData>(),null);
 
         confirmAddRoomDialog = new DialogTemplate().generateSummaryAddRoomDialog(this, roomData.toString());
         confirmAddRoomDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
