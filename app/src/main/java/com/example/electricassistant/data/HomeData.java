@@ -1,6 +1,8 @@
 package com.example.electricassistant.data;
 
+import com.example.electricassistant.data_enum.MeasureEnum;
 import com.example.electricassistant.display_data.GeneralDisplayData;
+import com.example.electricassistant.data_enum.VoltageEnum;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.electricassistant.data;
+package com.example.electricassistant.data_enum;
 
 public enum GaugeUnitEnum {
     Ampere,

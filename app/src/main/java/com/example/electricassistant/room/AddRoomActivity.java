@@ -14,9 +14,9 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.electricassistant.data.ApplianceData;
-import com.example.electricassistant.data.MaxApplianceEnum;
+import com.example.electricassistant.data_enum.MaxApplianceEnum;
 import com.example.electricassistant.data.RoomData;
-import com.example.electricassistant.data.TypeOfRoomEnum;
+import com.example.electricassistant.data_enum.TypeOfRoomEnum;
 import com.example.electricassistant.R;
 import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;

@@ -11,8 +11,8 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.example.electricassistant.data.HomeData;
-import com.example.electricassistant.data.MeasureEnum;
-import com.example.electricassistant.data.VoltageEnum;
+import com.example.electricassistant.data_enum.MeasureEnum;
+import com.example.electricassistant.data_enum.VoltageEnum;
 import com.example.electricassistant.R;
 import com.example.electricassistant.global_data.GlobalData;
 

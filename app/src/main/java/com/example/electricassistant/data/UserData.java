@@ -1,6 +1,12 @@
 package com.example.electricassistant.data;
 
-import com.example.electricassistant.display_data.GeneralDisplayData;
+import com.example.electricassistant.data_enum.CurrencyEnum;
+import com.example.electricassistant.data_enum.FontSizeEnum;
+import com.example.electricassistant.data_enum.GaugeRefreshRateEnum;
+import com.example.electricassistant.data_enum.GaugeUnitEnum;
+import com.example.electricassistant.data_enum.GuageTypeEnum;
+import com.example.electricassistant.data_enum.SyncRefreshRateEnum;
+import com.example.electricassistant.data_enum.UnitEnum;
 
 import java.time.LocalDateTime;
 import java.util.List;

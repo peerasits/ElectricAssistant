@@ -18,9 +18,9 @@ import android.widget.Toast;
 import com.example.electricassistant.R;
 import com.example.electricassistant.data.AmountOfHour;
 import com.example.electricassistant.data.ApplianceData;
-import com.example.electricassistant.data.CurrentUnitEnum;
-import com.example.electricassistant.data.TypeOfApplianceEnum;
-import com.example.electricassistant.data.VoltageEnum;
+import com.example.electricassistant.data_enum.CurrentUnitEnum;
+import com.example.electricassistant.data_enum.TypeOfApplianceEnum;
+import com.example.electricassistant.data_enum.VoltageEnum;
 import com.example.electricassistant.global_data.GlobalData;
 
 import java.util.List;

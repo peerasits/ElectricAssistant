@@ -1,5 +1,8 @@
 package com.example.electricassistant.data;
 
+import com.example.electricassistant.data_enum.TypeOfApplianceEnum;
+import com.example.electricassistant.data_enum.VoltageEnum;
+
 public class ApplianceData {
     private String name;
     private TypeOfApplianceEnum typeOfApplianceEnum;

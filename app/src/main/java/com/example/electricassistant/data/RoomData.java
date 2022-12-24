@@ -1,6 +1,7 @@
 package com.example.electricassistant.data;
 
-import java.util.Arrays;
+import com.example.electricassistant.data_enum.TypeOfRoomEnum;
+
 import java.util.List;
 
 public class RoomData {

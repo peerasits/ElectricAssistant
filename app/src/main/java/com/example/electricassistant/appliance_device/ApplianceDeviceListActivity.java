@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,14 +19,12 @@ import com.example.electricassistant.R;
 import com.example.electricassistant.appliance_device_recycler_adapter.ApplianceDeviceRecyclerViewAdapter;
 import com.example.electricassistant.data.ApplianceData;
 import com.example.electricassistant.data.RoomData;
-import com.example.electricassistant.data.TypeOfApplianceEnum;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.profile.ProfileActivity;
 import com.example.electricassistant.setting_activity.DataSettingActivity;
 import com.example.electricassistant.setting_activity.SettingActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ApplianceDeviceListActivity extends AppCompatActivity implements View.OnClickListener {

@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.ekndev.gaugelibrary.HalfGauge;
 import com.ekndev.gaugelibrary.Range;
-import com.example.electricassistant.data.GuageTypeEnum;
-import com.example.electricassistant.data.MeasureEnum;
+import com.example.electricassistant.data_enum.GuageTypeEnum;
+import com.example.electricassistant.data_enum.MeasureEnum;
 import com.example.electricassistant.display_data.CostOfElectricityDisplayData;
 import com.example.electricassistant.display_data.GeneralDisplayData;
 import com.example.electricassistant.display_data.VoltageDisplayData;

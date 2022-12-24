@@ -2,20 +2,20 @@ package com.example.electricassistant.global_data;
 
 
 import com.example.electricassistant.data.ApplianceData;
-import com.example.electricassistant.data.CurrencyEnum;
-import com.example.electricassistant.data.FontSizeEnum;
-import com.example.electricassistant.data.GaugeRefreshRateEnum;
-import com.example.electricassistant.data.GaugeUnitEnum;
-import com.example.electricassistant.data.GuageTypeEnum;
+import com.example.electricassistant.data_enum.CurrencyEnum;
+import com.example.electricassistant.data_enum.FontSizeEnum;
+import com.example.electricassistant.data_enum.GaugeRefreshRateEnum;
+import com.example.electricassistant.data_enum.GaugeUnitEnum;
+import com.example.electricassistant.data_enum.GuageTypeEnum;
 import com.example.electricassistant.data.HomeData;
-import com.example.electricassistant.data.MeasureEnum;
+import com.example.electricassistant.data_enum.MeasureEnum;
 import com.example.electricassistant.data.RoomData;
-import com.example.electricassistant.data.SyncRefreshRateEnum;
-import com.example.electricassistant.data.TypeOfApplianceEnum;
-import com.example.electricassistant.data.TypeOfRoomEnum;
-import com.example.electricassistant.data.UnitEnum;
+import com.example.electricassistant.data_enum.SyncRefreshRateEnum;
+import com.example.electricassistant.data_enum.TypeOfApplianceEnum;
+import com.example.electricassistant.data_enum.TypeOfRoomEnum;
+import com.example.electricassistant.data_enum.UnitEnum;
 import com.example.electricassistant.data.UserData;
-import com.example.electricassistant.data.VoltageEnum;
+import com.example.electricassistant.data_enum.VoltageEnum;
 import com.example.electricassistant.display_data.GeneralDisplayData;
 
 import java.time.LocalDateTime;

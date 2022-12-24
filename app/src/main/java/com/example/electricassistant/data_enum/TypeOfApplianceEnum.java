@@ -1,6 +1,5 @@
-package com.example.electricassistant.data;
+package com.example.electricassistant.data_enum;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum TypeOfApplianceEnum {

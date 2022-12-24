@@ -1,7 +1,7 @@
 package com.example.electricassistant.util;
 
 import com.example.electricassistant.data.RoomData;
-import com.example.electricassistant.data.TypeOfRoomEnum;
+import com.example.electricassistant.data_enum.TypeOfRoomEnum;
 
 public class ConvertStringFromEnum {
     public static int itemDefineFromTypeOfRoomSpinner(RoomData roomSelected){
