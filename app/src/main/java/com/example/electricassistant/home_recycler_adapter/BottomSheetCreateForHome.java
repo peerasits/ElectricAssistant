@@ -37,6 +37,8 @@ public class BottomSheetCreateForHome {
 
     private int selectedIndex = -1;
     private boolean isSelectedHome = false;
+    private HomeData homeSelected;
+    private HomeData homeToDelete;
 
     public void create(FragmentActivity fragmentActivity, int index) {
 
@@ -91,6 +93,8 @@ public class BottomSheetCreateForHome {
             @Override
             public void onClick(View view) {
 
+                homeSelected = GlobalData.currentUserData.getHomeSelected();
+                homeToDelete = GlobalData.currentUserData.getArrHomeData().get(selectedIndex);
 
                 List<HomeData> homeDataList = GlobalData.currentUserData.getArrHomeData();
                 class OnclickDialog implements DialogInterface.OnClickListener {
@@ -99,6 +103,9 @@ public class BottomSheetCreateForHome {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case -1:
+                                if (homeSelected.getName().equals(homeToDelete.getName()) && homeSelected.getAddress().equals(homeToDelete.getAddress())) {
+                                    GlobalData.currentUserData.setHomeSelected(null);
+                                }
                                 if (homeDataList.get(selectedIndex) != null) {
                                     homeDataList.remove(selectedIndex);
                                     homeAdapter.notifyDataSetChanged();
@@ -118,6 +125,7 @@ public class BottomSheetCreateForHome {
                 confirmTodeleteHomeDialog.setPositiveButton("Confirm", new OnclickDialog());
                 confirmTodeleteHomeDialog.setNegativeButton("Cancel", new OnclickDialog());
                 confirmTodeleteHomeDialog.show();
+
 
                 if (GlobalData.currentUserData.getArrHomeData().size() <= 0) {
                     HomeSelectFragment.setNoDataTextView();
