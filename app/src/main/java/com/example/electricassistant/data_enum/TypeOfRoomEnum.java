@@ -1,5 +1,7 @@
 package com.example.electricassistant.data_enum;
 
+import com.example.electricassistant.data.RoomData;
+
 import java.util.Arrays;
 
 public enum TypeOfRoomEnum {
@@ -31,17 +33,27 @@ public enum TypeOfRoomEnum {
         return result;
     }
 
-    public static TypeOfRoomEnum convertTypeOfRoomStrToEnum(String TypeOfRoomStr){
+    public static TypeOfRoomEnum convertTypeOfRoomStrToEnum(String TypeOfRoomStr) {
         TypeOfRoomEnum[] allOfTypeOfRoomEnumElements = TypeOfRoomEnum.values();
         String[] allStringFromTypeOfRoomEnumElements = toArray(TypeOfRoomEnum.class);
         TypeOfRoomEnum resultRoomTypeOfRoomEnum = null;
 
-        for(int i = 0;i<allStringFromTypeOfRoomEnumElements.length;i++){
-            if(allStringFromTypeOfRoomEnumElements[i].indexOf("TypeOfRoomStr")!= -1){
+        for (int i = 0; i < allStringFromTypeOfRoomEnumElements.length; i++) {
+            if (allStringFromTypeOfRoomEnumElements[i].indexOf("TypeOfRoomStr") != -1) {
                 resultRoomTypeOfRoomEnum = allOfTypeOfRoomEnumElements[i];
                 break;
             }
         }
         return resultRoomTypeOfRoomEnum;
+    }
+
+    public static int getIndexOfTypeOfRoomEnumFromRoomObj(RoomData roomSelected) {
+        TypeOfRoomEnum[] allOfTypeOfRoomEnumElements = TypeOfRoomEnum.values();
+        for (int i = 0; i < allOfTypeOfRoomEnumElements.length; i++) {
+            if (allOfTypeOfRoomEnumElements[i] == roomSelected.getTypeOfRoom()) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

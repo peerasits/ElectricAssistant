@@ -2,6 +2,9 @@ package com.example.electricassistant.room;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +17,7 @@ import com.example.electricassistant.R;
 import com.example.electricassistant.data_enum.MaxApplianceEnum;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data_enum.TypeOfRoomEnum;
+import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.util.ConvertStringFromEnum;
 
@@ -28,6 +32,7 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
     private Button editing_edit_room_btn;
 
     private Bundle editRoomBundle;
+    private AlertDialog.Builder confirmEditRoomDialog;
 
     private int indexOfRoom = -1;
     private RoomData roomSelected;
@@ -68,14 +73,14 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
 
     private void initRoomSpinners() {
 
-        int item = ConvertStringFromEnum.itemDefineFromTypeOfRoomSpinner(roomSelected);
+        int item = TypeOfRoomEnum.getIndexOfTypeOfRoomEnumFromRoomObj(roomSelected);
 
         ArrayAdapter<String> spinnerTypeOfRoomArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, typeOfRoomArr);
         spinnerTypeOfRoomArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type_edit_room_spinner.setAdapter(spinnerTypeOfRoomArrayAdapter);
         type_edit_room_spinner.setSelection(item);
 
-        item = ConvertStringFromEnum.itemDefineFromMaxApplianceSpinner(roomSelected);
+        item = MaxApplianceEnum.getIndexOfMaxApplianceEnumFromRoomObj(roomSelected);
         ArrayAdapter<String> spinnerMaxApplianceArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, maxApplianceArr);
         spinnerMaxApplianceArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         max_appliance_edit_room_spinner.setAdapter(spinnerMaxApplianceArrayAdapter);
@@ -90,13 +95,37 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
         String typeOfRoomEnumEditedValue = type_edit_room_spinner.getSelectedItem().toString();
         int maxApplianceEdited = Integer.parseInt(max_appliance_edit_room_spinner.getSelectedItem().toString());
 
+
         TypeOfRoomEnum typeOfRoomEnumEdited = TypeOfRoomEnum.convertTypeOfRoomStrToEnum(typeOfRoomEnumEditedValue);
 
-        roomSelected.setName(namedOfRoomEditedStr);
-        roomSelected.setDescription(descriptiondOfRoomEditedStr);
-        roomSelected.setMonitoring(monitoringOfRoomEditedBool);
-        roomSelected.setTypeOfRoom(typeOfRoomEnumEdited);
-        roomSelected.setMaxAppliances(maxApplianceEdited);
+        String roomDataResultStr = "Room name : "+namedOfRoomEditedStr+"\n"+
+                "Description : "+descriptiondOfRoomEditedStr+"\n"+
+                "Type of room  : "+typeOfRoomEnumEditedValue+"\n"+
+                "Monitoring : "+(monitoringOfRoomEditedBool ? "Yes" : "No")+"\n"+
+                "Max Appliance : "+String.valueOf(maxApplianceEdited);
+
+        confirmEditRoomDialog = new DialogTemplate().generateConfirmToEditRoomDialog(this,roomDataResultStr);
+        confirmEditRoomDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                roomSelected.setName(namedOfRoomEditedStr);
+                roomSelected.setDescription(descriptiondOfRoomEditedStr);
+                roomSelected.setMonitoring(monitoringOfRoomEditedBool);
+                roomSelected.setTypeOfRoom(typeOfRoomEnumEdited);
+                roomSelected.setMaxAppliances(maxApplianceEdited);
+                dialogInterface.dismiss();
+                finish();
+            }
+        });
+        confirmEditRoomDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        confirmEditRoomDialog.show();
+
+
     }
 
     @Override
@@ -104,7 +133,6 @@ public class EditRoomActivity extends AppCompatActivity implements View.OnClickL
         switch(view.getId()){
             case R.id.editing_edit_room_btn:
                 updateRoomData();
-                finish();
                 break;
             case R.id.cancel_edit_room_btn:
                 finish();

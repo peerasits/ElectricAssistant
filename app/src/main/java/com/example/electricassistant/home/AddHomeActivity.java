@@ -41,8 +41,7 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
     private boolean isMonitoring;
 
     //Dialog section
-    private AlertDialog.Builder summaryDialog;
-
+    private AlertDialog.Builder summaryToAddDialog;
 
 
     @Override
@@ -87,29 +86,35 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
                 MeasureEnum resultMeasure = MeasureEnum.convertMeasureEnumStrToEnum(measureStr);
                 VoltageEnum resultVoltage = VoltageEnum.convertVoltageEnumStrToEnum(voltageStr);
 
-                HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null,null,homeUrl);
+                HomeData homeData = new HomeData(homeNameStr, addressStr, resultMeasure, resultVoltage, isMonitoring, null, null, homeUrl);
 
+                String roomDataResultStr = "Home name : " + homeNameStr + "\n" +
+                        "Address : " + addressStr + "\n" +
+                        "Voltage  : " + voltageStr + "\n" +
+                        "MeasureStr   : " + measureStr + "\n" +
+                        "Monitoring : " + (isMonitoring ? "Yes" : "No") + "\n" +
+                        "HomeUrl   : " + homeUrl + "\n";
 
-                summaryDialog = new DialogTemplate().generateSummaryAddHomeDialog(this,homeData.toString());
-                summaryDialog.setPositiveButton("CONFIRM", new DialogInterface.OnClickListener() {
+                summaryToAddDialog = new DialogTemplate().generateSummaryAddHomeDialog(this, roomDataResultStr);
+
+                summaryToAddDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (GlobalData.currentUserData.getArrHomeData() != null) {
                             GlobalData.currentUserData.getArrHomeData().add(homeData);
-                        }else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "Error to add this home.", Toast.LENGTH_SHORT).show();
                         }
                         finish();
                     }
                 });
-                summaryDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                summaryToAddDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        finish();
                     }
                 });
-                summaryDialog.show();
+                summaryToAddDialog.show();
 
                 break;
             default:
@@ -118,7 +123,7 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    private void initHomeSpinner(){
+    private void initHomeSpinner() {
         ArrayAdapter<String> spinnerMeasureArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, measures);
         spinnerMeasureArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         measure_add_home_spinner.setAdapter(spinnerMeasureArrayAdapter);
@@ -131,8 +136,6 @@ public class AddHomeActivity extends AppCompatActivity implements View.OnClickLi
         item = spinnerVoltageArrayAdapter.getPosition(voltages[defaultVoltageIndex]);
         voltage_add_home_spinner.setSelection(item);
     }
-
-
 
 
 }

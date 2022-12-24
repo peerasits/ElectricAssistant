@@ -128,7 +128,7 @@ public class BottomSheetCreateForRoom implements View.OnClickListener {
             case R.id.menu_bottom_sheet_room_delete_tv:
 
                 List<RoomData> roomDataList = GlobalData.currentUserData.getHomeSelected().getRooms();
-                AlertDialog.Builder confirmTodeleteDialog = dialogTemplate.generateConfirmToDeleteRoomDialog(fragmentActivity, "Confirm to delete room?");
+                AlertDialog.Builder confirmToDeleteRoomDialog = dialogTemplate.generateConfirmToDeleteRoomDialog(fragmentActivity, "Confirm to delete room?");
                 class OnclickDialog implements DialogInterface.OnClickListener {
 
                     @Override
@@ -150,9 +150,9 @@ public class BottomSheetCreateForRoom implements View.OnClickListener {
                 }
 
                 OnclickDialog onclickDialog = new OnclickDialog();
-                confirmTodeleteDialog.setPositiveButton("Confirm", (DialogInterface.OnClickListener) onclickDialog);
-                confirmTodeleteDialog.setNegativeButton("Cancel", (DialogInterface.OnClickListener) onclickDialog);
-                confirmTodeleteDialog.show();
+                confirmToDeleteRoomDialog.setPositiveButton("Confirm", (DialogInterface.OnClickListener) onclickDialog);
+                confirmToDeleteRoomDialog.setNegativeButton("Cancel", (DialogInterface.OnClickListener) onclickDialog);
+                confirmToDeleteRoomDialog.show();
                 roomBottomSheetDialog.dismiss();
 
                 break;

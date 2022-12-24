@@ -129,6 +129,9 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         setRoomRecyclerView();
         setNoDataTextView();
+        if(home_room_pic_label_img!= null){
+            Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
+        }
     }
 
     private static void setNoDataTextView() {

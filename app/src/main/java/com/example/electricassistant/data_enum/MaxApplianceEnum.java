@@ -1,5 +1,7 @@
 package com.example.electricassistant.data_enum;
 
+import com.example.electricassistant.data.RoomData;
+
 import java.util.Arrays;
 
 public enum MaxApplianceEnum {
@@ -15,4 +17,16 @@ public enum MaxApplianceEnum {
 
         return result;
     }
+
+    public static int getIndexOfMaxApplianceEnumFromRoomObj(RoomData selectRoom){
+        MaxApplianceEnum[] allOfMaxApplianceEnumElements = MaxApplianceEnum.values();
+        for(int i = 0 ;i<allOfMaxApplianceEnumElements.length;i++){
+            if(allOfMaxApplianceEnumElements[i].toString().indexOf(String.valueOf(selectRoom.getMaxAppliances()))!= -1){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
 }

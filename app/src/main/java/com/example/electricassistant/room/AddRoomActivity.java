@@ -108,7 +108,13 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
 
         RoomData roomData = new RoomData(roomNameStr, typeOfRoomEnum, descriptionOfRoomStr, isMonitoringOfRoom, maxApplianceValue, new ArrayList<ApplianceData>(),null);
 
-        confirmAddRoomDialog = new DialogTemplate().generateSummaryAddRoomDialog(this, roomData.toString());
+        String roomDataResultStr = "Room name : "+roomNameStr+"\n"+
+                "Description : "+descriptionOfRoomStr+"\n"+
+                "Type of room  : "+typeOfRoomStr+"\n"+
+                "Monitoring : "+(isMonitoringOfRoom ? "Yes" : "No")+"\n"+
+                "Max Appliance : "+String.valueOf(maxApplianceValue);
+        confirmAddRoomDialog = new DialogTemplate().generateSummaryAddRoomDialog(this,roomDataResultStr);
+
         confirmAddRoomDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -124,7 +130,6 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                finish();
             }
         });
         confirmAddRoomDialog.show();

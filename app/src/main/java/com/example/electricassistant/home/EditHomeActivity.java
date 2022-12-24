@@ -2,6 +2,8 @@ package com.example.electricassistant.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.data_enum.MeasureEnum;
 import com.example.electricassistant.data_enum.VoltageEnum;
 import com.example.electricassistant.R;
+import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 
 public class EditHomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,8 +26,10 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
     private Switch monitoring_edit_home_switch;
     private Spinner voltage_edit_home_spinner;
     private Spinner measure_edit_home_spinner;
-    private Button cancel_edit_home_btn, ok_edit_home_btn;
+    private Button cancel_edit_home_btn;
+    private Button adding_edit_home_btn;
 
+    private AlertDialog.Builder confirmToEditDialog;
 
     private Bundle editBundle;
     private HomeData resultHomeData;
@@ -47,8 +52,8 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
 
         cancel_edit_home_btn = findViewById(R.id.cancel_edit_home_btn);
         cancel_edit_home_btn.setOnClickListener(this::onClick);
-        ok_edit_home_btn = findViewById(R.id.Adding_add_home_btn);
-        ok_edit_home_btn.setOnClickListener(this::onClick);
+        adding_edit_home_btn = findViewById(R.id.adding_edit_home_btn);
+        adding_edit_home_btn.setOnClickListener(this::onClick);
 
         home_edit_home_et = findViewById(R.id.home_edit_home_et);
         address_edit_home_et = findViewById(R.id.address_edit_home_et);
@@ -102,9 +107,8 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
             case R.id.cancel_edit_home_btn:
                 finish();
                 break;
-            case R.id.Adding_add_home_btn:
+            case R.id.adding_edit_home_btn:
                 updateHomeDataToGlobal();
-                finish();
                 break;
             default:
                 break;
@@ -114,21 +118,50 @@ public class EditHomeActivity extends AppCompatActivity implements View.OnClickL
 
     private void updateHomeDataToGlobal() {
         HomeData selectedHomeForUpdate;
-        String voltageStr,measureStr;
+
         if (selectedIndex != -1) {
             selectedHomeForUpdate = GlobalData.currentUserData.getArrHomeData().get(selectedIndex);
-            selectedHomeForUpdate.setName(home_edit_home_et.getText().toString());
-            selectedHomeForUpdate.setAddress(address_edit_home_et.getText().toString());
-            selectedHomeForUpdate.setMonitoring(monitoring_edit_home_switch.isChecked());
-            selectedHomeForUpdate.setUrlOfHome(homepic_url_title_edit_home_et.getText().toString());
 
-            voltageStr = voltage_edit_home_spinner.getSelectedItem().toString();
-            measureStr = measure_edit_home_spinner.getSelectedItem().toString();
-            VoltageEnum voltageEnum = VoltageEnum.convertVoltageEnumStrToEnum(voltageStr);
-            MeasureEnum measureEnum = MeasureEnum.convertMeasureEnumStrToEnum(measureStr);
+            String homeNameToEdit = home_edit_home_et.getText().toString();
+            String addressToEdit = address_edit_home_et.getText().toString();
+            boolean isMnitoringToEdit = monitoring_edit_home_switch.isChecked();
+            String homePicUrlToEdit = homepic_url_title_edit_home_et.getText().toString();
+            String voltageStrToEdit = voltage_edit_home_spinner.getSelectedItem().toString();
+            String measureStrToEdit = measure_edit_home_spinner.getSelectedItem().toString();
 
-            selectedHomeForUpdate.setVoltage(voltageEnum);
-            selectedHomeForUpdate.setMeasure(measureEnum);
+            VoltageEnum voltageEnumToEdit = VoltageEnum.convertVoltageEnumStrToEnum(voltageStrToEdit);
+            MeasureEnum measureEnumToEdit = MeasureEnum.convertMeasureEnumStrToEnum(measureStrToEdit);
+
+            String homeDataResultStr = "Home name : " + homeNameToEdit + "\n" +
+                    "Address : " + addressToEdit + "\n" +
+                    "Voltage  : " + voltageStrToEdit + "\n" +
+                    "MeasureStr   : " + measureStrToEdit + "\n" +
+                    "Monitoring : " + (isMnitoringToEdit ? "Yes" : "No") + "\n" +
+                    "HomeUrl   : " + homePicUrlToEdit + "\n";
+            confirmToEditDialog = new DialogTemplate().generateConfirmToEditHomeDialog(this,String.valueOf(homeDataResultStr));
+            confirmToEditDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    selectedHomeForUpdate.setName(home_edit_home_et.getText().toString());
+                    selectedHomeForUpdate.setAddress(address_edit_home_et.getText().toString());
+                    selectedHomeForUpdate.setMonitoring(monitoring_edit_home_switch.isChecked());
+                    selectedHomeForUpdate.setUrlOfHome(homepic_url_title_edit_home_et.getText().toString());
+                    selectedHomeForUpdate.setVoltage(voltageEnumToEdit);
+                    selectedHomeForUpdate.setMeasure(measureEnumToEdit);
+                    dialogInterface.dismiss();
+                    finish();
+                }
+            });
+            confirmToEditDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            confirmToEditDialog.show();
+
+
 
         }
 

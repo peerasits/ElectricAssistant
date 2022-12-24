@@ -41,6 +41,19 @@ public class DialogTemplate {
                 ;
     }
 
+    public AlertDialog.Builder generateConfirmToEditHomeDialog(Activity activity,String message){
+        return new AlertDialog.Builder(activity)
+                .setTitle("Notification")
+                .setMessage(message)
+                ;
+    }
+    public AlertDialog.Builder generateConfirmToDeleteHomeDialog(Activity activity,String message){
+        return new AlertDialog.Builder(activity)
+                .setTitle("Notification")
+                .setMessage(message)
+                ;
+    }
+
     public AlertDialog.Builder generateSummaryAddRoomDialog(Activity activity,String message){
         return new AlertDialog.Builder(activity)
                 .setTitle("Confirm room data to adding?")
@@ -48,6 +61,12 @@ public class DialogTemplate {
                 ;
     }
     public AlertDialog.Builder generateConfirmToDeleteRoomDialog(Activity activity,String message){
+        return new AlertDialog.Builder(activity)
+                .setTitle("Notification")
+                .setMessage(message)
+                ;
+    }
+    public AlertDialog.Builder generateConfirmToEditRoomDialog(Activity activity,String message){
         return new AlertDialog.Builder(activity)
                 .setTitle("Notification")
                 .setMessage(message)

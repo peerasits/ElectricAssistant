@@ -69,7 +69,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerVi
         holder.option_rv_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new BottomSheetCreateForHome().create(fragmentActivity, homeDataList.get(position).getName(), homeDataList.get(position).getAddress());
+                new BottomSheetCreateForHome().create(fragmentActivity,position);
             }
         });
 
