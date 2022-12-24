@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.electricassistant.data.ApplianceData;
+import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.data_enum.MaxApplianceEnum;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data_enum.TypeOfRoomEnum;
@@ -38,6 +39,7 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
     private String[] typeOfRoomArr = TypeOfRoomEnum.toArray(TypeOfRoomEnum.class);
     private int defaultTypeOfRoomIndex = 2;
     private boolean defaultMonitoring = true;
+    private HomeData homeSelect;
 
     private AlertDialog.Builder confirmAddRoomDialog;
 
@@ -47,7 +49,8 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_add_room);
         getSupportActionBar().setTitle("Add room");
 
-        selectedRoom = GlobalData.currentUserData.getHomeSelected().getRooms();
+        homeSelect = GlobalData.currentUserData.getHomeSelected();
+        selectedRoom = homeSelect.getRooms();
 
         room_add_room_et = findViewById(R.id.room_add_room_et);
         description_add_room_tv = findViewById(R.id.description_add_room_tv);
@@ -118,11 +121,11 @@ public class AddRoomActivity extends AppCompatActivity implements View.OnClickLi
         confirmAddRoomDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                if (selectedRoom == null) {
-                    selectedRoom = new ArrayList<RoomData>();
+                List<RoomData> roomDataList = GlobalData.currentUserData.getHomeSelected().getRooms();
+                if (roomDataList != null) {
+                    roomDataList.add(roomData);
+                    Toast.makeText(getApplicationContext(), "Add room data successfully", Toast.LENGTH_SHORT).show();
                 }
-                selectedRoom.add(roomData);
-                Toast.makeText(getApplicationContext(), "Add room data successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

@@ -19,7 +19,6 @@ import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.data_enum.TypeOfRoomEnum;
 import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
-import com.example.electricassistant.util.ConvertStringFromEnum;
 
 public class EditRoomActivity extends AppCompatActivity implements View.OnClickListener {
 

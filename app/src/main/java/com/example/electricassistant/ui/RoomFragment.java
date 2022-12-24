@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.electricassistant.data.HomeData;
 import com.example.electricassistant.data.RoomData;
 import com.example.electricassistant.R;
+import com.example.electricassistant.dialog.DialogTemplate;
 import com.example.electricassistant.global_data.GlobalData;
 import com.example.electricassistant.room.AddRoomActivity;
 import com.example.electricassistant.room_recycler_adapter.RoomRecyclerViewAdapter;
@@ -75,50 +76,55 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView roomlist_recyclerview;
     public static RoomRecyclerViewAdapter roomRecyclerViewAdapter;
-    private List<RoomData> roomData;
     private FloatingActionButton add_room_btn;
     private static TextView no_data_room_tv;
     private TextView home_name_room_label_tv;
     private ImageView home_room_pic_label_img;
 
-
-    private HomeData homeSelected = GlobalData.currentUserData.getHomeSelected();
     private Intent addRoomIntent;
+
+    private HomeData homeSelected ;
+    private List<RoomData> roomData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_room, container, false);
-        roomlist_recyclerview = v.findViewById(R.id.roomlist_recyclerview);
-        no_data_room_tv = v.findViewById(R.id.no_data_room_tv);
-        no_data_room_tv.setVisibility(View.GONE);
-        add_room_btn = v.findViewById(R.id.add_room_btn);
-        add_room_btn.setOnClickListener(this::onClick);
-        home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
-        home_room_pic_label_img.setImageResource(R.mipmap.home_example);
-        home_name_room_label_tv = v.findViewById(R.id.home_name_room_label_tv);
-        home_name_room_label_tv.setText("  " + homeSelected.getName());
-        Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
-
-        if (GlobalData.currentUserData.getHomeSelected() != null) {
-            roomData = homeSelected.getRooms();
-        }
-
-        if (roomData == null) {
-            roomData = new ArrayList<RoomData>();
-            no_data_room_tv.setVisibility(View.VISIBLE);
-        } else {
+        homeSelected = GlobalData.currentUserData.getHomeSelected();
+        if (homeSelected != null) {
+            // Inflate the layout for this fragment
+            roomlist_recyclerview = v.findViewById(R.id.roomlist_recyclerview);
+            no_data_room_tv = v.findViewById(R.id.no_data_room_tv);
             no_data_room_tv.setVisibility(View.GONE);
-        }
+            add_room_btn = v.findViewById(R.id.add_room_btn);
+            add_room_btn.setOnClickListener(this::onClick);
+            home_room_pic_label_img = v.findViewById(R.id.home_room_pic_label_img);
+            home_room_pic_label_img.setImageResource(R.mipmap.home_example);
+            home_name_room_label_tv = v.findViewById(R.id.home_name_room_label_tv);
+            home_name_room_label_tv.setText("  " + homeSelected.getName());
+            Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
 
-        setRoomRecyclerView();
+            if (GlobalData.currentUserData.getHomeSelected() != null) {
+                roomData = homeSelected.getRooms();
+            }
+
+            if (roomData == null) {
+                roomData = new ArrayList<RoomData>();
+                no_data_room_tv.setVisibility(View.VISIBLE);
+            } else {
+                no_data_room_tv.setVisibility(View.GONE);
+            }
+
+            setRoomRecyclerView();
+
+        } else {
+            new DialogTemplate().generateDialog(getActivity());
+        }
         return v;
     }
 
     private void setRoomRecyclerView() {
         roomRecyclerViewAdapter = new RoomRecyclerViewAdapter(getActivity(), roomData);
-        roomRecyclerViewAdapter.notifyDataSetChanged();
         roomlist_recyclerview.setAdapter(roomRecyclerViewAdapter);
         roomlist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -127,10 +133,12 @@ public class RoomFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        setRoomRecyclerView();
-        setNoDataTextView();
-        if(home_room_pic_label_img!= null){
-            Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
+        if (homeSelected != null) {
+            roomRecyclerViewAdapter.notifyDataSetChanged();
+            setNoDataTextView();
+            if (home_room_pic_label_img != null) {
+                Glide.with(getActivity()).load(homeSelected.getUrlOfHome()).fitCenter().into(home_room_pic_label_img);
+            }
         }
     }
 
