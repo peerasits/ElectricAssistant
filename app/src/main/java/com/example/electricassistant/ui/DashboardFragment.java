@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.ekndev.gaugelibrary.HalfGauge;
 import com.ekndev.gaugelibrary.Range;
+import com.example.electricassistant.MainActivity;
 import com.example.electricassistant.data_enum.GuageTypeEnum;
 import com.example.electricassistant.data_enum.MeasureEnum;
 import com.example.electricassistant.display_data.CostOfElectricityDisplayData;
@@ -367,6 +368,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             startActivity(intent);
         }
         if (view.getId() == R.id.refresh_btn) {
+            MainActivity.mqttHelper.publish("refreshing");
             Toast.makeText(getActivity(), "Refreshing", Toast.LENGTH_SHORT).show();
             arcGauge.setValue(new Random().nextInt(1000) + 1);
         }

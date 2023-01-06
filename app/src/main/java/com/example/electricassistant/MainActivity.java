@@ -2,11 +2,12 @@ package com.example.electricassistant;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.electricassistant.global_data.GlobalData;
+import com.example.electricassistant.mqttUtil.MqttHelper;
 import com.example.electricassistant.profile.ProfileActivity;
 import com.example.electricassistant.setting_activity.DataSettingActivity;
 import com.example.electricassistant.setting_activity.SettingActivity;
@@ -21,9 +22,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.electricassistant.databinding.ActivityMainBinding;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    public static MqttHelper mqttHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +50,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mqttHelper = new MqttHelper(getApplicationContext());
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -59,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case R.id.setting_item:
+                mqttHelper.publish("eieieiei");
                 Intent i = new Intent(this, SettingActivity.class);
                 startActivity(i);
                 return true;

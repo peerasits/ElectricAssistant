@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.electricassistant">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -20,7 +25,8 @@
         <activity
             android:name=".ui.login.ApplianceDeviceInfoActivity"
             android:exported="true"
-            android:label="@string/title_activity_appliance_device_info" />
+            android:label="@string/title_activity_appliance_device_info"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".room.EditRoomActivity"
             android:exported="true" />
@@ -64,6 +70,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name="org.eclipse.paho.android.service.MqttService" >
+        </service>
     </application>
 
 </manifest>
