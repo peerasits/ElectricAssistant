@@ -169,7 +169,7 @@ public class AddApplianceActivity extends AppCompatActivity implements View.OnCl
                 VoltageEnum voltageEnumToAdd = GlobalData.currentUserData.getHomeSelected().getVoltage();
 
 
-                applianceData = new ApplianceData(nameToAddStr,typeOfApplianceToAddEnum,false,currentSensorToAddBool,voltageSensorToAddBool,monitoringToAddBool
+                applianceData = new ApplianceData("Dev00",nameToAddStr,typeOfApplianceToAddEnum,false,currentSensorToAddBool,voltageSensorToAddBool,monitoringToAddBool
                         ,limitHourToAddBool,notificationToAddBool,descriptionToAddStr,voltageEnumToAdd,Double.parseDouble(amountOfHourToAddStr));
                 applianceDataList.add(applianceData);
 

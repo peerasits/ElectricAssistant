@@ -46,6 +46,8 @@
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/arcgauge_display_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/content_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/cost_usage_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/energyprofile_list_display.xml" value="0.34193840579710144" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/energyprofilelist_display.xml" value="0.67" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/fragment_dashboard.xml" value="0.5329295987887964" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/fragment_data_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/fragment_energy_profile.xml" value="0.20520833333333333" />
@@ -64,6 +66,7 @@
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/room_botton_sheet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/roomlist_display.xml" value="0.33" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/spinner_display_center.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/statistic_list_display.xml" value="0.34193840579710144" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/layout/usage_layout.xml" value="0.67" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Porome/AndroidStudioProjects/ElectricAssistant/app/src/main/res/menu/menu_main.xml" value="0.5" />

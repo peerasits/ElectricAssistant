@@ -4,6 +4,7 @@ import com.example.electricassistant.data_enum.TypeOfApplianceEnum;
 import com.example.electricassistant.data_enum.VoltageEnum;
 
 public class ApplianceData {
+    private String id;
     private String name;
     private TypeOfApplianceEnum typeOfApplianceEnum;
     private boolean status, iscurrent, isvoltage;
@@ -12,10 +13,11 @@ public class ApplianceData {
     private VoltageEnum defaultVoltage;
     private double countdownTime;
 
-    public ApplianceData(String name, TypeOfApplianceEnum typeOfApplianceEnum, boolean status,
+    public ApplianceData(String id,String name, TypeOfApplianceEnum typeOfApplianceEnum, boolean status,
                          boolean iscurrent, boolean isvoltage, boolean isDeviceMonitoing,
                          boolean isTimmer, boolean isNotify, String description, VoltageEnum defaultVoltage,
                          double countdownTime) {
+        this.id = id;
         this.name = name;
         this.typeOfApplianceEnum = typeOfApplianceEnum;
         this.status = status;

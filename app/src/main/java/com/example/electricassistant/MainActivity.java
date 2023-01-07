@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case R.id.setting_item:
-                mqttHelper.publish("eieieiei");
                 Intent i = new Intent(this, SettingActivity.class);
                 startActivity(i);
                 return true;

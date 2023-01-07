@@ -19,7 +19,7 @@ public class MqttHelper {
 
     MqttConnectOptions mOptions;
     MqttAndroidClient mClient;
-    String TOPIC = "device";
+    String TOPIC = "esp";
     Context c ;
 
 
@@ -109,7 +109,7 @@ public class MqttHelper {
 
     void subscribe() {
         try {
-            IMqttToken subToken = mClient.subscribe(TOPIC, 1, c, mSubscribeCallback);
+            IMqttToken subToken = mClient.subscribe(TOPIC+"/#", 1, c, mSubscribeCallback);
             mClient.setCallback(mMessageListener);
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,10 +117,10 @@ public class MqttHelper {
     }
 
 
-    public void publish(String example) {
+    public void publish(String tag,String example) {
         MqttMessage message = new MqttMessage(example.getBytes(StandardCharsets.UTF_8));
         try {
-            mClient.publish(TOPIC, message, c, mPublishCallback);
+            mClient.publish(TOPIC+"/"+tag, message, c, mPublishCallback);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -368,7 +368,6 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
             startActivity(intent);
         }
         if (view.getId() == R.id.refresh_btn) {
-            MainActivity.mqttHelper.publish("refreshing");
             Toast.makeText(getActivity(), "Refreshing", Toast.LENGTH_SHORT).show();
             arcGauge.setValue(new Random().nextInt(1000) + 1);
         }

@@ -56,15 +56,15 @@ public class GlobalData {
 
     public static void ininRoomData(){
         List<ApplianceData> applianceData = new ArrayList<ApplianceData>();
-        applianceData.add(new ApplianceData("My device 01", TypeOfApplianceEnum.Air_conditioner, true, true, true, false, false, true, "My example device"
+        applianceData.add(new ApplianceData("dev01","My device 01", TypeOfApplianceEnum.Air_conditioner, true, true, true, false, false, true, "My example device"
                 , VoltageEnum._220v, 5));
-        applianceData.add(new ApplianceData("My device 02", TypeOfApplianceEnum.Electric_fan, true, true, true, true, false, true, "My example device 2 naja"
+        applianceData.add(new ApplianceData("dev02","My device 02", TypeOfApplianceEnum.Electric_fan, true, true, true, true, false, true, "My example device 2 naja"
                 , VoltageEnum._110v, 5));
-        applianceData.add(new ApplianceData("My device 03", TypeOfApplianceEnum.Lantern_Torch, true, true, true, true, false, false, "My pc eiei"
+        applianceData.add(new ApplianceData("dev03","My device 03", TypeOfApplianceEnum.Lantern_Torch, true, true, true, true, false, false, "My pc eiei"
                 , VoltageEnum._230v, 5));
-        applianceData.add(new ApplianceData("My device 04", TypeOfApplianceEnum.Kitchen_hood, true, true, true, false, false, true, "My pc eiei"
+        applianceData.add(new ApplianceData("dev04","My device 04", TypeOfApplianceEnum.Kitchen_hood, true, true, true, false, false, true, "My pc eiei"
                 , VoltageEnum._220v, 5));
-        //applianceData.add(new ApplianceData("My device 05", TypeOfApplianceEnum.Clothes_iron, true, true, true, false, false, false, "My pc eiei"
+        //applianceData.add(new ApplianceData("dev05","My device 05", TypeOfApplianceEnum.Clothes_iron, true, true, true, false, false, false, "My pc eiei"
                // , 220, 5));
 
 

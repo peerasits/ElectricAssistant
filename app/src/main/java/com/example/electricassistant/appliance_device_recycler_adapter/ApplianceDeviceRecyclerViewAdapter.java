@@ -6,14 +6,17 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.electricassistant.MainActivity;
 import com.example.electricassistant.R;
 import com.example.electricassistant.appliance_device.ApplianceInfoActivity;
 import com.example.electricassistant.data.ApplianceData;
@@ -101,6 +104,16 @@ public class ApplianceDeviceRecyclerViewAdapter extends RecyclerView.Adapter<App
             monitoring_appliance_list_img = itemView.findViewById(R.id.monitoring_appliance_list_img);
             notification_appliance_list_img = itemView.findViewById(R.id.notification_appliance_list_img);
             powersw_appliance_list_sw = itemView.findViewById(R.id.powersw_appliance_list_sw);
+            powersw_appliance_list_sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if(b){
+                        MainActivity.mqttHelper.publish("dev01","o");
+                    }else{
+                        MainActivity.mqttHelper.publish("dev01","f");
+                    }
+                }
+            });
             layout_appliancelist_rv_constraint = itemView.findViewById(R.id.layout_appliancelist_rv_constraint);
         }
     }

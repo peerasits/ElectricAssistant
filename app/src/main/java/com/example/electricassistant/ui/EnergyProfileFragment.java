@@ -3,12 +3,19 @@ package com.example.electricassistant.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.electricassistant.R;
+import com.example.electricassistant.data.EnergyProfileData;
+import com.example.electricassistant.energy_profile_recycler_adapter.EnergyProfileRecyclerViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,11 +63,25 @@ public class EnergyProfileFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    private RecyclerView energyprofilelist_recyclerview;
+    private EnergyProfileRecyclerViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        EnergyProfileData energyProfileData = new EnergyProfileData("save","this is an save option",false,false,true,10,true,10);
+        List<EnergyProfileData> energyProfileDataList = new ArrayList<EnergyProfileData>();
+        energyProfileDataList.add(energyProfileData);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_energy_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_energy_profile, container, false);
+
+        energyprofilelist_recyclerview = v.findViewById(R.id.energyprofilelist_recyclerview);
+        adapter = new EnergyProfileRecyclerViewAdapter(getActivity(),energyProfileDataList);
+        adapter.notifyDataSetChanged();
+        energyprofilelist_recyclerview.setAdapter(adapter);
+        energyprofilelist_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+        return v;
     }
 }
